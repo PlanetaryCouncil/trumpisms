@@ -39,32 +39,46 @@ Republish after editing by pointing the Artifact tool at `index.html` with the U
 
 ## The Billionaire Non-Proliferation Treaty
 
-Second page: `treaty.html` — a seven-article treaty proposal (a one-billion cap, everything
-above it committed to the planetary commons within ten years) followed by an impact list of
-interventions priced in lives changed per million dollars.
+Second page: `treaty.html`. Seven treaty articles (a one-billion cap per natural person,
+everything above it committed to the planetary commons within ten years, holdings counted at
+the beneficial owner, a public register, success reported in lives changed), then the
+programme the surplus pays for: fifteen planetary undertakings costed at published financing
+gaps, a dial for the share of the surplus committed, and a calendar of what ends by when.
 
-Data lives in the `ITEMS` array in the inline script:
+The argument the page exists to make is arithmetic: the surplus is about $13T, the whole
+programme costs about $12.3T, and it leaves change.
+
+Data lives in the `WORKS` array in the inline script, **in funding order** — the dial funds
+them top to bottom, so the order is an editorial claim about sequencing:
 
 ```js
 {
-  id: "01",
-  kind: "direct",            // direct | policy | proof — drives the "Kind" filter
-  status: "trial",           // trial | delivered | historic | policy | modelled
+  id: "I",
+  cost: 0.12,                // US$ trillions, at published financing-gap scale
+  term: "2027–2031",
   title: "…",
-  rate: 200,                 // lives changed per US$1M; null where no honest forward rate exists
-  unit: "deaths averted",    // deaths averted | sight restored | children protected | people reached
-  range: "≈$5,000 per death averted",   // the published figure the rate came from
-  desc: "…",                 // what the intervention is, 2–3 sentences
-  note: "…",                 // the mono footnote: the caveat, the counterfactual, the error bar
-  src: [{ label: "…", url: "https://…" }],
-  reach: 9, evidence: 9, durable: 5     // 0–10, AI-assigned, single pass
+  desc: "…",                 // what the undertaking actually buys, 1–2 sentences
+  ends: "…",                 // the mono line: what stops happening
+  deaths: 600000,            // annual deaths averted at full deployment; null where the
+                             // benefit is real but is not a mortality figure
+  people: 240000000,         // people whose material conditions change
+  unit: "people no longer living in transmission zones"
 }
 ```
 
-Only lines whose `unit` is `"deaths averted"` feed the median used by the fortune slider.
-Set `rate: null` rather than guessing — historic programmes and unpriceable insurance render
-a dash, and the slider skips them. Use literal `—` in `desc`/`note`, not `&mdash;`: those
-strings are HTML-escaped before rendering.
+Invariants worth keeping when editing:
 
-Figures are cost-effectiveness estimates, not audited outcomes; keep the source link on every
-line that carries a number.
+- **Deaths and people are credited only at completion.** A half-funded eradication campaign
+  eradicates nothing, so the tallies count fully-funded undertakings only.
+- **Populations are never summed** — the same child is in most of them. The people tally is
+  `max()` across completed undertakings and says on the page that it is a lower bound.
+- Keep `SURPLUS` (13.0) above the portfolio total; the "left over afterwards" figure on the
+  cover is `SURPLUS − Σcost` and is the whole point of the page. Update the cover figures if
+  costs change.
+- Use literal `—` in `desc`/`ends`/`unit`, not `&mdash;`: those strings are HTML-escaped.
+- Preset chips (`data-pct`) are cumulative thresholds — check them against the costs after
+  reordering, or a preset will label the wrong boundary.
+
+Figures are order-of-magnitude estimates from published financing gaps (WHO, UNESCO, the
+World Bank, UNEP, IEA), rounded hard. The method section on the page says so; keep it honest
+if you change the numbers.
