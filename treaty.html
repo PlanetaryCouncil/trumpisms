@@ -1,0 +1,990 @@
+<title>Billionaire Non-Proliferation Treaty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+<style>
+  :root {
+    --ground: #eceef1;
+    --panel: #fbfcfd;
+    --panel-alt: #f2f4f8;
+    --ink: #101a2b;
+    --ink-soft: #4d5a70;
+    --ink-faint: #7f8a9d;
+    --rule: #c8d0dc;
+    --rule-soft: #dfe4ec;
+    --accent: #1d3a6b;
+    --accent-soft: #dbe3f0;
+    --reach: #1d3a6b;
+    --evidence: #1f6b4f;
+    --durable: #96650f;
+    --stamp: #1d3a6b;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0a0f18;
+      --panel: #111826;
+      --panel-alt: #16202f;
+      --ink: #e6ebf2;
+      --ink-soft: #97a4b8;
+      --ink-faint: #6d7b90;
+      --rule: #26313f;
+      --rule-soft: #1a2331;
+      --accent: #7aa6e0;
+      --accent-soft: #16263c;
+      --reach: #7aa6e0;
+      --evidence: #5cc39a;
+      --durable: #d7a53f;
+      --stamp: #7aa6e0;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0a0f18;
+    --panel: #111826;
+    --panel-alt: #16202f;
+    --ink: #e6ebf2;
+    --ink-soft: #97a4b8;
+    --ink-faint: #6d7b90;
+    --rule: #26313f;
+    --rule-soft: #1a2331;
+    --accent: #7aa6e0;
+    --accent-soft: #16263c;
+    --reach: #7aa6e0;
+    --evidence: #5cc39a;
+    --durable: #d7a53f;
+    --stamp: #7aa6e0;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 96px; }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 44px 0 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .slug {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: baseline;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .slug a { color: var(--ink-faint); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .slug a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  h1 {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 800;
+    font-size: clamp(36px, 6.6vw, 64px);
+    line-height: .94;
+    letter-spacing: -.03em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  h1 span {
+    display: block;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: .40em;
+    letter-spacing: -.01em;
+    margin-top: 12px;
+  }
+
+  .epigraph {
+    border-left: 3px solid var(--accent);
+    padding: 2px 0 2px 16px;
+    margin: 0;
+    max-width: 60ch;
+    font-size: 19px;
+    color: var(--ink);
+  }
+
+  .epigraph span { display: block; color: var(--ink-soft); font-size: 16px; margin-top: 4px; }
+
+  .dek { max-width: 64ch; color: var(--ink-soft); margin: 0; }
+  .dek strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- articles ---------- */
+
+  h3.rubric {
+    font-family: Archivo, sans-serif;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 46px 0 0;
+    color: var(--ink);
+  }
+
+  .rubric-note {
+    margin: 6px 0 0;
+    max-width: 74ch;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+    gap: 1px;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    margin-top: 18px;
+  }
+
+  /* outline rather than a rule-coloured grid background, so a short last row
+     leaves panel behind it instead of a stray grey block */
+  .articles article {
+    background: var(--panel);
+    outline: 1px solid var(--rule);
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .articles h4 {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    margin: 0;
+  }
+
+  .art-no {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .articles p { margin: 0; font-size: 15.5px; color: var(--ink-soft); }
+
+  .articles p.fine {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+
+  /* ---------- the arithmetic ---------- */
+
+  .calc {
+    margin-top: 18px;
+    border: 1px solid var(--rule);
+    background: var(--panel-alt);
+    padding: 20px 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .calc-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+  }
+
+  .calc label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .calc input[type="range"] { flex: 1 1 260px; accent-color: var(--accent); }
+
+  .calc input[type="number"] {
+    width: 9ch;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 5px 7px;
+  }
+
+  .calc-out {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .calc-out div { background: var(--panel); padding: 12px 14px; }
+
+  .calc-out dt {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 4px;
+  }
+
+  .calc-out dd {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+  }
+
+  .calc-out dd small {
+    display: block;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 13.5px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+    margin-top: 3px;
+  }
+
+  /* ---------- controls ---------- */
+
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--ground);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 0 12px;
+    margin: 30px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 22px;
+  }
+
+  .ctl-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+  .ctl-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  button.chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    padding: 6px 11px;
+    cursor: pointer;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+
+  button.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+  button.chip[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--ground);
+  }
+
+  button.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .count {
+    margin-left: auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: .04em;
+  }
+
+  /* ---------- entries ---------- */
+
+  .ledger { display: flex; flex-direction: column; border-bottom: 1px solid var(--rule); }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr) 268px;
+    gap: 0 26px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+
+  .entry:first-child { border-top: 1px solid var(--rule); }
+
+  .file {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    letter-spacing: .04em;
+  }
+
+  .file .no { color: var(--ink); font-weight: 600; font-size: 13px; letter-spacing: .08em; }
+
+  .status {
+    align-self: flex-start;
+    border: 1px solid currentColor;
+    padding: 2px 6px;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .status[data-s="trial"]    { color: var(--evidence); }
+  .status[data-s="delivered"]{ color: var(--stamp); }
+  .status[data-s="historic"] { color: var(--stamp); }
+  .status[data-s="policy"]   { color: var(--durable); }
+  .status[data-s="modelled"] { color: var(--ink-faint); border-style: dashed; }
+
+  .body h2 {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -.015em;
+    line-height: 1.2;
+    margin: 0 0 7px;
+    text-wrap: balance;
+  }
+
+  .body p { margin: 0; font-size: 16px; color: var(--ink-soft); max-width: 60ch; }
+
+  .body .aside {
+    margin-top: 9px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--ink-faint);
+  }
+
+  .body .src { margin-top: 9px; display: flex; flex-wrap: wrap; gap: 6px 14px; }
+
+  .body .src a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 1px;
+  }
+
+  .body .src a::before { content: "\2197 "; opacity: .6; }
+  .body .src a:hover { border-bottom-color: var(--accent); }
+  .body .src a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .yield {
+    margin-top: 11px;
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink);
+    letter-spacing: .01em;
+  }
+
+  .yield b { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .yield span { color: var(--ink-faint); }
+
+  /* ---------- meters ---------- */
+
+  .scores { display: flex; flex-direction: column; gap: 9px; padding-top: 3px; }
+
+  .rate {
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    padding-bottom: 8px;
+    margin-bottom: 1px;
+  }
+
+  .rate b { display: block; font-size: 17px; color: var(--ink); font-weight: 600; }
+
+  .meter {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2px 10px;
+    align-items: center;
+  }
+
+  .meter .name {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    grid-column: 1;
+  }
+
+  .meter .val {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    font-family: "IBM Plex Mono", monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    align-self: center;
+    min-width: 2ch;
+    text-align: right;
+  }
+
+  .bar { grid-column: 1; display: flex; gap: 2px; height: 9px; }
+
+  .bar i { flex: 1; background: var(--rule-soft); border: 1px solid var(--rule); transition: background .25s ease; }
+  .bar i.on { border-color: transparent; }
+  .m-reach    .bar i.on { background: var(--reach); }
+  .m-evidence .bar i.on { background: var(--evidence); }
+  .m-durable  .bar i.on { background: var(--durable); }
+
+  .meter.na .name, .meter.na .val { color: var(--ink-faint); }
+  .meter.na .val { font-weight: 400; }
+  .meter.na .bar i { background: transparent; border-style: dashed; }
+
+  /* ---------- footer ---------- */
+
+  .method {
+    margin-top: 46px;
+    border: 1px solid var(--rule);
+    background: var(--panel-alt);
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .method h3 {
+    font-family: Archivo, sans-serif;
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .method p { margin: 0; font-size: 15px; color: var(--ink-soft); max-width: 78ch; }
+
+  .dispute {
+    margin-top: 4px;
+    border-top: 1px solid var(--rule);
+    padding-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 28px;
+  }
+
+  .dispute > div { flex: 1 1 340px; }
+
+  .dispute h4 {
+    font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    margin: 0 0 5px;
+    color: var(--ink);
+  }
+
+  .dispute p { max-width: 56ch; }
+
+  a.tg {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 11px 16px;
+    transition: background .14s ease, color .14s ease;
+  }
+
+  a.tg:hover { background: var(--accent); color: var(--panel); }
+  a.tg:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .tg-label {
+    font-family: Archivo, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .tg-handle { font-size: 14px; letter-spacing: .01em; }
+
+  @media (max-width: 860px) {
+    .entry { grid-template-columns: 1fr; gap: 14px; }
+    .file { flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .scores { max-width: 420px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="slug">
+      <span>Draft &mdash; open for signature</span>
+      <span><span class="mono" id="slug-count">00</span> interventions listed</span>
+      <span>Success measured in lives changed</span>
+      <span><a href="./index.html">The Trumpisms Register &rarr;</a></span>
+    </div>
+
+    <h1>Billionaire Non-Proliferation Treaty
+      <span>A cap at one billion, a destination for everything above it, and a list of what the surplus actually buys.</span>
+    </h1>
+
+    <p class="epigraph">Beyond one billion, life doesn't get any better.
+      <span>Additional money invested into planetary commons.</span>
+    </p>
+
+    <p class="dek">The first half of that sentence is a claim about <strong>diminishing returns</strong>: past a certain point another dollar changes nothing about a life &mdash; not health, not safety, not time, not the people who will sit at the funeral. The second half is a claim about <strong>where the same dollar does still change a life</strong>, and that half is measurable. The treaty below is the proposal. The list beneath it is the audit: every line is an intervention with a published cost per life saved or life changed, so the surplus can be argued about in lives rather than in percentages of a pledge.</p>
+  </header>
+
+  <h3 class="rubric">The treaty</h3>
+  <p class="rubric-note">Seven articles. No party has signed it; nothing here is law, and no living person's assets are described. It is written the way arms-control instruments are written because that is the argument: concentrated private capital is treated as a stockpile with a verification problem, not as a virtue with a tax rate.</p>
+
+  <div class="articles">
+    <article>
+      <span class="art-no">Article I</span>
+      <h4>The cap</h4>
+      <p>A ceiling of one billion US dollars in net worth per natural person, indexed to inflation and reviewed once a decade. Below it, nothing changes. There is no confiscation, no floor, no cap on income &mdash; only on accumulated stock held by one individual.</p>
+      <p class="fine">A billion is not chosen as a fair number. It is chosen as an obviously generous one: the argument survives being wrong by a factor of ten.</p>
+    </article>
+    <article>
+      <span class="art-no">Article II</span>
+      <h4>The surplus</h4>
+      <p>Everything above the cap is committed to the planetary commons and disbursed within ten years of crossing it. A pledge is not a disbursement; an endowment that grows faster than it gives is not a disbursement either.</p>
+      <p class="fine">The ten-year clock exists because perpetual foundations convert giving into governance &mdash; the money stays, the power stays, and the deaths the money would have averted still happen on schedule.</p>
+    </article>
+    <article>
+      <span class="art-no">Article III</span>
+      <h4>The commons</h4>
+      <p>Surplus goes to goods no one can be excluded from: disease elimination, clean air and water, a stable climate, an intact biosphere, open knowledge and the public institutions that hold them. Delivery runs through bodies accountable to the people served.</p>
+      <p class="fine">Naming rights are not a commons good. Neither is a wing, a prize, a chair, or a rocket.</p>
+    </article>
+    <article>
+      <span class="art-no">Article IV</span>
+      <h4>Non-proliferation</h4>
+      <p>Holdings are counted at the beneficial owner: trusts, foundations, holding companies, family offices and control blocks in an operating firm all count against the natural person who controls them. Splitting a fortune across vehicles or relatives does not create a new person under the cap.</p>
+      <p class="fine">Every enrichment programme in history has claimed to be for civilian use.</p>
+    </article>
+    <article>
+      <span class="art-no">Article V</span>
+      <h4>Verification</h4>
+      <p>A public register of holdings above the cap, audited annually by an independent body, with the beneficial-ownership chain published in full. Inspection is a condition of accession, not a courtesy extended afterwards.</p>
+      <p class="fine">Unverifiable compliance is the same thing as non-compliance, whatever the press release says.</p>
+    </article>
+    <article>
+      <span class="art-no">Article VI</span>
+      <h4>The measure</h4>
+      <p>Success is reported in lives changed &mdash; deaths averted, sight restored, children not poisoned, households lifted &mdash; with the cost per unit published and the method open to challenge. Dollars committed is an input, not a result.</p>
+      <p class="fine">Every figure in the list below is an estimate with an error bar. Publishing the error bar is the point.</p>
+    </article>
+    <article>
+      <span class="art-no">Article VII</span>
+      <h4>Accession</h4>
+      <p>Open for signature by any person, and for adoption by any state that prefers to legislate it. Unilateral compliance is valid and needs no counterparty: one signatory who disburses is worth more than a ratified instrument that nobody applies.</p>
+      <p class="fine">Non-proliferation regimes work when the holdouts become conspicuous. That is the whole enforcement mechanism on offer here.</p>
+    </article>
+  </div>
+
+  <h3 class="rubric">The arithmetic</h3>
+  <p class="rubric-note">Set a fortune. Everything above one billion is the surplus, and the list below re-prices itself in lives at each intervention's published rate. The rates are estimates and they degrade at scale &mdash; the cheapest interventions run out of cheap places to work &mdash; so read the totals as an order of magnitude, not a receipt.</p>
+
+  <div class="calc">
+    <div class="calc-row">
+      <label for="fortune">Fortune, US$ billions</label>
+      <input id="fortune" type="range" min="1" max="500" step="1" value="200" aria-describedby="calc-out">
+      <input id="fortune-num" type="number" min="1" max="5000" step="1" value="200" aria-label="Fortune in billions of US dollars">
+    </div>
+    <dl class="calc-out" id="calc-out">
+      <div>
+        <dt>Kept under the cap</dt>
+        <dd class="mono">$1.0B<small>Untouched, indexed, per person.</small></dd>
+      </div>
+      <div>
+        <dt>Surplus to the commons</dt>
+        <dd class="mono" id="out-surplus">&mdash;<small>Disbursed within ten years.</small></dd>
+      </div>
+      <div>
+        <dt>Deaths averted, at the median listed rate</dt>
+        <dd class="mono" id="out-lives">&mdash;<small id="out-lives-note">Order of magnitude, not a receipt.</small></dd>
+      </div>
+    </dl>
+  </div>
+
+  <h3 class="rubric">The impact list</h3>
+  <p class="rubric-note">What the surplus buys, ranked. Each line carries a published or reconstructed rate per million dollars, and three scores: how much reach a dollar has, how strong the evidence behind the rate is, and how durable the change is once made.</p>
+
+  <nav class="controls" aria-label="Sort and filter the impact list">
+    <div class="ctl-group">
+      <span class="ctl-label">Sort</span>
+      <button class="chip" data-sort="rate" aria-pressed="true">Lives per $1M</button>
+      <button class="chip" data-sort="reach" aria-pressed="false">Reach</button>
+      <button class="chip" data-sort="evidence" aria-pressed="false">Evidence</button>
+      <button class="chip" data-sort="durable" aria-pressed="false">Durability</button>
+    </div>
+    <div class="ctl-group">
+      <span class="ctl-label">Kind</span>
+      <button class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button class="chip" data-filter="direct" aria-pressed="false">Direct delivery</button>
+      <button class="chip" data-filter="policy" aria-pressed="false">Policy leverage</button>
+      <button class="chip" data-filter="proof" aria-pressed="false">Proof of concept</button>
+    </div>
+    <span class="count mono" id="count"></span>
+  </nav>
+
+  <main class="ledger" id="ledger"></main>
+
+  <section class="method">
+    <h3>How to read this</h3>
+    <p>The rates are cost-effectiveness estimates, not audited outcomes. Most of the direct-delivery lines come from published charity evaluations that model deaths averted per dollar; the historic lines divide a programme's reported lives saved by its reported spend, which flatters them, because the cheap work happened first and the counterfactual is never clean. Policy-leverage lines are the least certain and the highest-variance: a tobacco tax or a lead-paint regulation can dwarf everything else on this page, or return nothing at all if the law does not pass. Where a line cannot honestly carry a forward rate it shows a dash rather than a number &mdash; a zero is a judgement, a dash is an admission.</p>
+    <p class="mono" style="font-size:12px;letter-spacing:.04em">Figures are rounded to one significant figure and were current as published by the linked source; check the source before quoting one. "Lives changed" mixes units on purpose &mdash; a death averted, an eye restored and a child not poisoned are not the same thing, and the list does not pretend they convert.</p>
+
+    <div class="dispute">
+      <div>
+        <h4>The cap is the arguable part</h4>
+        <p>That a dollar buys more life in a bednet than in a second yacht is close to arithmetic. Where the ceiling sits, who counts a fortune, and whether a treaty is the right instrument at all &mdash; those are judgements. Bring the number you would set instead.</p>
+      </div>
+      <a class="tg" href="https://t.me/planetarycouncil" target="_blank" rel="noopener noreferrer">
+        <span class="tg-label">Discuss &amp; re-score</span>
+        <span class="tg-handle mono">t.me/planetarycouncil</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  // rate = lives changed per US$1M, conservative end of the published range; null where no
+  // honest forward rate exists (historic programmes, unpriceable insurance).
+  // unit = what a "life changed" means on this line. Scores are 0–10, assigned single-pass.
+  const ITEMS = [
+    {
+      id: "01", kind: "direct", status: "trial",
+      title: "Insecticide-treated bednets",
+      rate: 200, unit: "deaths averted",
+      range: "≈$5,000 per death averted",
+      desc: "Long-lasting nets distributed through national malaria campaigns in the highest-burden districts. The most-studied intervention in global health and the reference point everything else on this list is priced against.",
+      note: "Rate holds only where burden is high and coverage is low. Resistance is real and is priced into the current estimates rather than ignored.",
+      src: [{ label: "GiveWell — cost-effectiveness estimates", url: "https://www.givewell.org/how-we-work/our-criteria/cost-effectiveness" }],
+      reach: 9, evidence: 9, durable: 5
+    },
+    {
+      id: "02", kind: "direct", status: "trial",
+      title: "Seasonal malaria chemoprevention",
+      rate: 200, unit: "deaths averted",
+      range: "≈$5,000 per death averted",
+      desc: "Antimalarial courses given to young children each month of the transmission season across the Sahel. Cheap, seasonal, and limited by delivery reach rather than by drug cost.",
+      note: "Complements nets rather than competing with them; the two are usually costed against the same burden and should not be summed naively.",
+      src: [{ label: "GiveWell — top charities", url: "https://www.givewell.org/charities/top-charities" }],
+      reach: 9, evidence: 9, durable: 4
+    },
+    {
+      id: "03", kind: "direct", status: "trial",
+      title: "Cash incentives for routine infant vaccination",
+      rate: 250, unit: "deaths averted",
+      range: "≈$4,000 per death averted",
+      desc: "Small conditional payments to caregivers in northern Nigeria for bringing infants to existing clinics on schedule. The vaccines are already free; the binding constraint is the trip.",
+      note: "Among the strongest arguments on the page that the bottleneck in global health is frequently logistics and incentives, not science or supply.",
+      src: [{ label: "GiveWell — top charities", url: "https://www.givewell.org/charities/top-charities" }],
+      reach: 9, evidence: 8, durable: 6
+    },
+    {
+      id: "04", kind: "direct", status: "trial",
+      title: "Vitamin A supplementation",
+      rate: 150, unit: "deaths averted",
+      range: "≈$5,000–8,000 per death averted",
+      desc: "Twice-yearly capsules for children under five in deficient populations, reducing all-cause child mortality alongside blindness from deficiency.",
+      note: "Effect size has been debated for a decade and the current estimates are discounted for that debate rather than taken at their 1990s face value.",
+      src: [{ label: "GiveWell — top charities", url: "https://www.givewell.org/charities/top-charities" }],
+      reach: 8, evidence: 7, durable: 4
+    },
+    {
+      id: "05", kind: "direct", status: "trial",
+      title: "Chlorine dispensers for safe water",
+      rate: 200, unit: "deaths averted",
+      range: "≈$4,000–5,000 per death averted",
+      desc: "A dispenser at the water point, refilled by a local promoter, chlorinating collection by collection. Reduces child diarrhoeal death for a few dollars per person per year.",
+      note: "The evidence on water treatment and mortality strengthened substantially after 2022 meta-analysis; this line moved up the list on that evidence, not on new marketing.",
+      src: [{ label: "Evidence Action — Dispensers for Safe Water", url: "https://www.evidenceaction.org/dispensers-for-safe-water" }],
+      reach: 8, evidence: 8, durable: 5
+    },
+    {
+      id: "06", kind: "direct", status: "delivered",
+      title: "Treatment for severe acute malnutrition",
+      rate: 300, unit: "deaths averted",
+      range: "≈$3,000–5,000 per death averted",
+      desc: "Ready-to-use therapeutic food delivered through outpatient programmes: roughly six to eight weeks of paste to bring a severely wasted child back from a case-fatality rate that runs into double digits untreated.",
+      note: "Rate assumes the child is found. Case-finding, not paste, is where the money and the failure both concentrate.",
+      src: [{ label: "UNICEF — severe wasting", url: "https://www.unicef.org/nutrition/severe-wasting" }],
+      reach: 9, evidence: 8, durable: 5
+    },
+    {
+      id: "07", kind: "direct", status: "delivered",
+      title: "Cataract surgery",
+      rate: 4000, unit: "sight restored",
+      range: "≈$100–300 per eye",
+      desc: "A twenty-minute operation that ends reversible blindness, at high volume in low-income settings. Not a death averted — a decade of working, walking, unaccompanied life returned to someone who had lost it.",
+      note: "Listed to make the point that Article VI's unit is deliberately mixed. Nothing here converts sight into deaths, and no honest list should.",
+      src: [{ label: "IAPB — Vision Atlas", url: "https://www.iapb.org/learn/vision-atlas/" }],
+      reach: 10, evidence: 9, durable: 9
+    },
+    {
+      id: "08", kind: "policy", status: "policy",
+      title: "Eliminating lead in paint and spices",
+      rate: 20000, unit: "children protected",
+      range: "cents per child, where regulation lands",
+      desc: "Testing consumer products, publishing the results, and helping governments write and enforce a lead standard. One national regulation removes an exposure that costs surviving children measurable IQ and lifetime earnings.",
+      note: "The highest-variance line on the page. Where the law passes the leverage is enormous; where it does not, the spend returns nothing. Read the rate as an expected value across many attempts.",
+      src: [{ label: "WHO — lead poisoning", url: "https://www.who.int/news-room/fact-sheets/detail/lead-poisoning-and-health" }],
+      reach: 10, evidence: 5, durable: 9
+    },
+    {
+      id: "09", kind: "policy", status: "policy",
+      title: "Tobacco taxation and control",
+      rate: 1000, unit: "deaths averted",
+      range: "modelled; dominated by whether the tax passes",
+      desc: "Technical and advocacy support for excise increases, plain packaging and advertising bans. Tobacco kills over eight million people a year, and price is the single most effective lever against it.",
+      note: "Modelled, not trialled, and the counterfactual is contested: some of these laws pass anyway, later. The industry's own lobbying spend is the best available evidence that the lever works.",
+      src: [{ label: "WHO — tobacco fact sheet", url: "https://www.who.int/news-room/fact-sheets/detail/tobacco" }],
+      reach: 9, evidence: 5, durable: 8
+    },
+    {
+      id: "10", kind: "direct", status: "delivered",
+      title: "Unconditional cash transfers",
+      rate: 5000, unit: "people reached",
+      range: "≈$1,000 delivered per household",
+      desc: "Money sent directly to people in extreme poverty, with no conditions and minimal overhead. It does not top the mortality table, and it is the benchmark every other line should have to beat before spending someone else's money on their behalf.",
+      note: "Counted in people reached, not deaths averted. The recipients decide what the money is for, which is precisely the property being purchased.",
+      src: [{ label: "GiveDirectly — research", url: "https://www.givedirectly.org/research-at-give-directly/" }],
+      reach: 8, evidence: 9, durable: 6
+    },
+    {
+      id: "11", kind: "proof", status: "historic",
+      title: "Smallpox eradication",
+      rate: null, unit: "deaths averted",
+      range: "a programme cost, not a rate",
+      desc: "The intensified eradication programme ran for about a decade on a budget that a single modern superyacht would cover, and ended a disease that had been killing on the order of two million people a year. No one has died of smallpox since.",
+      note: "Carries no forward rate: it cannot be bought again. It is on the list as the ceiling — the demonstrated upper bound on what a decade of concentrated money can do when it is pointed at a commons problem.",
+      src: [{ label: "WHO — smallpox", url: "https://www.who.int/health-topics/smallpox" }],
+      reach: 10, evidence: 10, durable: 10
+    },
+    {
+      id: "12", kind: "proof", status: "historic",
+      title: "Pooled procurement for HIV, TB and malaria",
+      rate: null, unit: "deaths averted",
+      range: "historic average, not a forward price",
+      desc: "Two decades of multilateral financing, reported in tens of millions of lives saved against tens of billions of dollars committed. The per-life average across that record sits in the same order of magnitude as the direct-delivery lines above.",
+      note: "Historic averages flatter: the cheapest work is done first, and attribution across donors is never clean. Included to show the top lines survive contact with programmes at national scale.",
+      src: [{ label: "The Global Fund — results", url: "https://www.theglobalfund.org/en/results/" }],
+      reach: 9, evidence: 7, durable: 8
+    },
+    {
+      id: "13", kind: "policy", status: "modelled",
+      title: "Pandemic detection and response capacity",
+      rate: null, unit: "deaths averted",
+      range: "unpriceable in advance",
+      desc: "Metagenomic surveillance, sequencing capacity, stockpiles and rapid-response teams: insurance against the event that makes every other line on this page irrelevant for two years.",
+      note: "Shows a dash because an honest forward rate does not exist — the denominator is a probability distribution over outbreaks that have not happened. Priced at zero it is still obviously worth buying.",
+      src: [{ label: "WHO — pandemic preparedness", url: "https://www.who.int/emergencies/preparedness" }],
+      reach: 8, evidence: 3, durable: 7
+    },
+    {
+      id: "14", kind: "policy", status: "modelled",
+      title: "Cleaner household and ambient air",
+      rate: 500, unit: "deaths averted",
+      range: "modelled; varies by an order of magnitude",
+      desc: "Clean cooking fuel, coal-plant retirement and enforceable particulate standards. Air pollution is among the largest environmental causes of death worldwide, and the abatement cost per death averted spans an enormous range depending on the source.",
+      note: "The wide range is the honest answer: retiring one coal plant near a dense city and subsidising one rural stove do not belong in the same column, but they share this line for want of a better one.",
+      src: [{ label: "WHO — air pollution", url: "https://www.who.int/health-topics/air-pollution" }],
+      reach: 8, evidence: 5, durable: 7
+    }
+  ];
+
+  const AXES = [
+    { key: "reach",    label: "Reach",     cls: "m-reach" },
+    { key: "evidence", label: "Evidence",  cls: "m-evidence" },
+    { key: "durable",  label: "Durability", cls: "m-durable" }
+  ];
+
+  const STATUS_LABEL = {
+    trial: "Trial evidence",
+    delivered: "Delivered at scale",
+    historic: "Historic record",
+    policy: "Policy leverage",
+    modelled: "Modelled only"
+  };
+
+  const KIND_FILTER = { direct: "direct", policy: "policy", proof: "proof" };
+
+  const ledger = document.getElementById("ledger");
+  const countEl = document.getElementById("count");
+  const range = document.getElementById("fortune");
+  const num = document.getElementById("fortune-num");
+
+  let sortKey = "rate";
+  let filter = "all";
+  let surplus = 0; // US$
+
+  const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+  const fmtInt = n => Math.round(n).toLocaleString("en-US");
+
+  const fmtMoney = usd => {
+    if (usd >= 1e9) return "$" + (usd / 1e9).toFixed(usd / 1e9 >= 100 ? 0 : 1) + "B";
+    if (usd >= 1e6) return "$" + (usd / 1e6).toFixed(0) + "M";
+    return "$" + fmtInt(usd);
+  };
+
+  const meter = (e, axis) => {
+    const v = e[axis.key];
+    const cells = Array.from({ length: 10 }, (_, i) => '<i class="' + (i < v ? "on" : "") + '"></i>').join("");
+    return '<div class="meter ' + axis.cls + '" role="img" aria-label="' + axis.label + ': ' + v + ' out of 10">'
+      + '<span class="name">' + axis.label + '</span>'
+      + '<span class="val">' + v + '</span>'
+      + '<span class="bar" aria-hidden="true">' + cells + '</span></div>';
+  };
+
+  const naMeter = axis => '<div class="meter na ' + axis.cls + '" role="img" aria-label="' + axis.label + ': not applicable">'
+    + '<span class="name">' + axis.label + '</span><span class="val">&mdash;</span>'
+    + '<span class="bar" aria-hidden="true">' + "<i></i>".repeat(10) + '</span></div>';
+
+  function yieldLine(e) {
+    if (e.rate === null) {
+      return '<p class="yield"><span>No forward rate &mdash; see the note.</span></p>';
+    }
+    const lives = (surplus / 1e6) * e.rate;
+    // Past a certain point the arithmetic outruns the world: there are not that many
+    // children, eyes or households to reach. Say so rather than printing the number straight.
+    const broken = lives > 5e7
+      ? ' <span>&mdash; more of them than exist to reach; the rate breaks long before this.</span>'
+      : '';
+    return '<p class="yield"><b>' + fmtInt(lives) + '</b> ' + esc(e.unit)
+      + ' <span>if the whole surplus of ' + fmtMoney(surplus) + ' went here</span>' + broken + '</p>';
+  }
+
+  function rowHTML(e) {
+    const rateCell = e.rate === null
+      ? '<div class="rate"><b>&mdash;</b>' + esc(e.range) + '</div>'
+      : '<div class="rate"><b>' + fmtInt(e.rate) + ' / $1M</b>' + esc(e.range) + '</div>';
+    return '<article class="entry">'
+      + '<div class="file">'
+      +   '<span class="no">№ ' + e.id + '</span>'
+      +   '<span>' + esc(e.unit) + '</span>'
+      +   '<span class="status" data-s="' + e.status + '">' + STATUS_LABEL[e.status] + '</span>'
+      + '</div>'
+      + '<div class="body">'
+      +   '<h2>' + esc(e.title) + '</h2>'
+      +   '<p>' + esc(e.desc) + '</p>'
+      +   '<p class="aside">' + esc(e.note) + '</p>'
+      +   ((e.src || []).length ? '<p class="src">' + e.src.map(x =>
+            '<a href="' + x.url + '" target="_blank" rel="noopener noreferrer">' + esc(x.label) + '</a>').join("") + '</p>' : "")
+      +   yieldLine(e)
+      + '</div>'
+      + '<div class="scores">' + rateCell + AXES.map(a => meter(e, a)).join("") + '</div>'
+      + '</article>';
+  }
+
+  function render() {
+    const rows = ITEMS
+      .filter(e => filter === "all" || e.kind === KIND_FILTER[filter])
+      .sort((a, b) => {
+        if (sortKey === "rate") {
+          const av = a.rate === null ? -1 : a.rate;
+          const bv = b.rate === null ? -1 : b.rate;
+          return bv - av;
+        }
+        return b[sortKey] - a[sortKey] || (b.rate || -1) - (a.rate || -1);
+      });
+
+    ledger.innerHTML = rows.map(rowHTML).join("");
+    countEl.textContent = rows.length + " of " + ITEMS.length + " listed";
+  }
+
+  // median forward rate among the lines counted in deaths averted
+  const DEATH_RATES = ITEMS.filter(e => e.rate !== null && e.unit === "deaths averted")
+    .map(e => e.rate).sort((a, b) => a - b);
+  const MEDIAN = DEATH_RATES.length % 2
+    ? DEATH_RATES[(DEATH_RATES.length - 1) / 2]
+    : (DEATH_RATES[DEATH_RATES.length / 2 - 1] + DEATH_RATES[DEATH_RATES.length / 2]) / 2;
+
+  function setFortune(billions) {
+    const b = Math.max(1, Math.min(5000, billions || 1));
+    surplus = Math.max(0, (b - 1) * 1e9);
+    document.getElementById("out-surplus").innerHTML = fmtMoney(surplus)
+      + "<small>Disbursed within ten years.</small>";
+    document.getElementById("out-lives").innerHTML = fmtInt((surplus / 1e6) * MEDIAN)
+      + "<small>At " + MEDIAN + " deaths averted per $1M &mdash; the median of the listed rates. Order of magnitude, not a receipt.</small>";
+    render();
+  }
+
+  range.addEventListener("input", () => {
+    num.value = range.value;
+    setFortune(Number(range.value));
+  });
+
+  num.addEventListener("input", () => {
+    const v = Number(num.value);
+    if (!Number.isFinite(v)) return;
+    range.value = String(Math.max(1, Math.min(500, v)));
+    setFortune(v);
+  });
+
+  document.getElementById("slug-count").textContent = String(ITEMS.length).padStart(2, "0");
+
+  document.querySelectorAll("[data-sort]").forEach(b => b.addEventListener("click", () => {
+    sortKey = b.dataset.sort;
+    document.querySelectorAll("[data-sort]").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    render();
+  }));
+
+  document.querySelectorAll("[data-filter]").forEach(b => b.addEventListener("click", () => {
+    filter = b.dataset.filter;
+    document.querySelectorAll("[data-filter]").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
+    render();
+  }));
+
+  setFortune(Number(range.value));
+</script>

@@ -36,3 +36,35 @@ The three scores are AI-assigned, single-pass, and the page says so. Re-scoring 
 Telegram channel: https://t.me/planetarycouncil
 
 Republish after editing by pointing the Artifact tool at `index.html` with the URL above.
+
+## The Billionaire Non-Proliferation Treaty
+
+Second page: `treaty.html` — a seven-article treaty proposal (a one-billion cap, everything
+above it committed to the planetary commons within ten years) followed by an impact list of
+interventions priced in lives changed per million dollars.
+
+Data lives in the `ITEMS` array in the inline script:
+
+```js
+{
+  id: "01",
+  kind: "direct",            // direct | policy | proof — drives the "Kind" filter
+  status: "trial",           // trial | delivered | historic | policy | modelled
+  title: "…",
+  rate: 200,                 // lives changed per US$1M; null where no honest forward rate exists
+  unit: "deaths averted",    // deaths averted | sight restored | children protected | people reached
+  range: "≈$5,000 per death averted",   // the published figure the rate came from
+  desc: "…",                 // what the intervention is, 2–3 sentences
+  note: "…",                 // the mono footnote: the caveat, the counterfactual, the error bar
+  src: [{ label: "…", url: "https://…" }],
+  reach: 9, evidence: 9, durable: 5     // 0–10, AI-assigned, single pass
+}
+```
+
+Only lines whose `unit` is `"deaths averted"` feed the median used by the fortune slider.
+Set `rate: null` rather than guessing — historic programmes and unpriceable insurance render
+a dash, and the slider skips them. Use literal `—` in `desc`/`note`, not `&mdash;`: those
+strings are HTML-escaped before rendering.
+
+Figures are cost-effectiveness estimates, not audited outcomes; keep the source link on every
+line that carries a number.
