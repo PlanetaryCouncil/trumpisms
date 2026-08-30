@@ -259,6 +259,96 @@
     margin-top: 2px;
   }
 
+  /* ================= the invitation ================= */
+
+  .plateau {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 26px;
+    margin-top: 26px;
+  }
+
+  .ledger-box {
+    border: 1px solid var(--rule);
+    background: var(--panel);
+  }
+
+  .ledger-box h3 {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-faint);
+  }
+
+  .ledger-box.gains h3 { color: var(--living); }
+
+  .ledger-box dl { margin: 0; }
+
+  .ledger-box .row {
+    display: grid;
+    grid-template-columns: minmax(110px, 38%) 1fr;
+    gap: 16px;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+
+  .ledger-box .row:last-child { border-bottom: 0; }
+
+  .ledger-box dt {
+    font-family: Archivo, sans-serif;
+    font-weight: 700;
+    font-size: 15.5px;
+    letter-spacing: -.01em;
+    margin: 0;
+  }
+
+  .ledger-box dd {
+    margin: 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  .ledger-box .nil dd::before {
+    content: "\2014  ";
+    color: var(--ink-faint);
+  }
+
+  .ledger-box.gains dd::before {
+    content: "+ ";
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--living);
+    font-weight: 600;
+  }
+
+  .together {
+    margin-top: 26px;
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    background: var(--panel-alt);
+    padding: 22px 24px;
+    max-width: none;
+  }
+
+  .together p { margin: 0; font-size: 17px; color: var(--ink-soft); max-width: 74ch; }
+  .together p + p { margin-top: 12px; }
+  .together strong { color: var(--ink); font-weight: 600; }
+  .together .creed {
+    font-family: Archivo, sans-serif;
+    font-weight: 700;
+    font-size: clamp(19px, 2.4vw, 24px);
+    letter-spacing: -.02em;
+    color: var(--ink);
+    max-width: 36ch;
+    line-height: 1.25;
+  }
+
   /* ================= the instrument ================= */
 
   .instrument {
@@ -644,6 +734,7 @@
       <span>Draft &mdash; open for signature</span>
       <span>Fifteen undertakings</span>
       <span>One planet, one balance sheet</span>
+      <span>Addressed to the three thousand</span>
       <span><a href="./index.html">The Trumpisms Register &rarr;</a></span>
     </div>
 
@@ -728,6 +819,44 @@
         <p>Open for signature by any person and for adoption by any state that prefers to legislate it. Unilateral compliance is valid and requires no counterparty: one signatory who disburses outranks a ratified instrument nobody applies.</p>
         <p class="fine">Non-proliferation regimes work when the holdouts become conspicuous. That is the entire enforcement mechanism on offer here.</p>
       </article>
+    </div>
+  </section>
+
+  <!-- ============================ invitation ============================ -->
+  <section id="invitation">
+    <p class="rubric">To the three thousand</p>
+    <h2 class="head">The second billion buys you nothing. We can prove it.</h2>
+    <p class="lede">This part is addressed to the people the cap applies to, because the treaty is an offer before it is a rule. The research on money and wellbeing agrees on the shape: satisfaction climbs steeply out of poverty, keeps climbing through security, and then <strong>flattens</strong>. Somewhere far below a billion, the curve goes horizontal. Past that point a fortune is no longer a life getting better &mdash; it is a number getting larger, plus the cost of guarding it. You know this. It is the quiet fact of every survey of the very rich ever conducted: asked how much would be enough, they answer <em>more</em>, at every level, forever. The treaty is the exit from that treadmill, and it is the only exit that comes with something magnificent on the other side.</p>
+
+    <div class="plateau">
+      <div class="ledger-box">
+        <h3>What the second billion buys</h3>
+        <dl>
+          <div class="row nil"><dt>Health</dt><dd>No treatment exists at $2B that is unavailable at $1B. Your cardiologist cannot tell the difference.</dd></div>
+          <div class="row nil"><dt>Time</dt><dd>Not one additional hour. The calendar is the one asset that never responds to money past the first few million.</dd></div>
+          <div class="row nil"><dt>Safety</dt><dd>Marginally less of it, if anything &mdash; the number is now the target, and the perimeter around your family grows with it.</dd></div>
+          <div class="row nil"><dt>Love</dt><dd>The people at the table increasingly cannot be sure why they are at the table. Neither, eventually, can you.</dd></div>
+          <div class="row nil"><dt>Meaning</dt><dd>Compounding is not a purpose. Nobody's eulogy has ever cited an index outperformed.</dd></div>
+          <div class="row nil"><dt>Standing</dt><dd>A bigger number in a ranking of numbers, read mostly by the other people in the ranking.</dd></div>
+        </dl>
+      </div>
+      <div class="ledger-box gains">
+        <h3>What signing buys</h3>
+        <dl>
+          <div class="row"><dt>A dead disease</dt><dd>Eradication costs $120B. The largest fortunes on the list carry twice that above the cap: one signature, and the oldest killer of children in history is over.</dd></div>
+          <div class="row"><dt>A seat</dt><dd>Signatories sit on the commons council with the people served &mdash; deciding together where the surplus goes, one voice each, for life.</dd></div>
+          <div class="row"><dt>Peers</dt><dd>The first cohort of signatories will know each other the way the Apollo crews knew each other. Nobody remembers who was rich in 1969.</dd></div>
+          <div class="row"><dt>A verified name</dt><dd>On the public register, in the founding instrument, on the record &mdash; not on a wing of a building. Auditable generosity, the only kind that persuades anyone.</dd></div>
+          <div class="row"><dt>The rules</dt><dd>First movers write the treaty's institutions. Holdouts inherit them. That asymmetry is the entire history of every regime like this one.</dd></div>
+          <div class="row"><dt>The story</dt><dd>Your grandchildren live on the calendar below and know which side of the register you were on. That is the only form of compounding that survives you.</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="together">
+      <p class="creed">We work for humanity. We change the rules of the game. And what counts as impact, we decide together.</p>
+      <p>Together means the table is round: signatories, and the communities the surplus serves, one voice each &mdash; not a donor conference where the microphone tracks the money. The treaty removes the very thing that has poisoned every previous version of this offer, because <strong>under the cap, no one at the table can buy the table.</strong> That is what the ceiling is for. It is not a punishment for success; it is the admission price of a room where your judgement finally counts for itself, weighed on its merits by people free to tell you no.</p>
+      <p>And this is why the ask is not sacrifice. Sacrifice is giving up something that was making your life better. The plateau means the surplus was not. What the treaty asks you to surrender is a scoreboard &mdash; and what it hands back is the largest project our species has ever attempted, with your name in the founding instrument and your voice, singular and equal, in every decision it makes. <strong>No one has ever been offered a better trade for something worth nothing.</strong></p>
     </div>
   </section>
 
