@@ -58,6 +58,25 @@ Full contract in [`person.schema.json`](./person.schema.json). Shape:
 `outreach.status`: `needs_research → researched → queued → contacted → responded → meeting →
 signed | declined | do_not_contact`.
 
+## Google Sheets / CSV — the collection surface
+
+JSONL is for git and tooling; it is the wrong thing to hand a volunteer. **Collect in a Google
+Sheet.** The bridge is CSV, and it goes both ways:
+
+```bash
+node outreach/to-csv.mjs        # people.jsonl -> people.csv  (flat, Sheet-ready)
+```
+
+Then **File → Import → Upload `people.csv`** in Google Sheets (or open it in Excel/Numbers).
+Nested companies and sources are flattened with ` | ` so the Sheet stays readable. Edit there,
+share it with whoever is collecting, and when you want the tooling back (validation, the
+per-person briefs, an automated merge), export the Sheet as CSV and we add a `from-csv.mjs`
+that compiles it back to JSONL and runs the same provenance checks.
+
+For a first pass you may not need the JSONL at all — collect in the Sheet, keep the columns
+below, and only graduate to the structured store if you automate outreach. The one column that
+still matters on day one is provenance: keep a source next to any email and any climate score.
+
 ## Workflow
 
 ```bash
