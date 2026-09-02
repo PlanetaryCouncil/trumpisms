@@ -506,7 +506,7 @@
   <header class="masthead">
     <div class="slug">
       <span><span class="mono" id="slug-count">00</span> entries</span>
-      <span>Last entry 27 Aug 2026</span>
+      <span>Last entry <span id="slug-last">&mdash;</span></span>
       <span>Scores assigned by AI</span>
     </div>
     <h1>The Trumpisms Register
@@ -591,6 +591,18 @@
       desc: "An executive order adopts “Department of War” as a secondary title for the Pentagon and directs officials to use it, with a request to Congress to make the rename permanent.",
       note: "The department was called the War Department until 1947. Renaming it back needs Congress; using the title does not.",
       serious: 8, satire: 5, undo: 3
+    },
+    {
+      id: "015", date: "2026-09-02", status: "stated",
+      title: "The Strait of Hormuz becomes the “Trump Strait”",
+      desc: "“Now that we have it under U.S.A. control, should we change the name Hormuz Strait to TRUMP STRAIT??? Like America itself, it would be ‘hotter’ than ever before!” The White House followed within hours with a map of the Gulf, the waterway already relabelled, captioned “It's got a nice ring to it.”",
+      note: "The strait is bounded by Iran and Oman and is nowhere near the United States; no mechanism for the change has been named. Five months earlier the same account demanded Tehran “open the Fuckin' Strait” (№ 012). The Lake America order was signed six days ago.",
+      src: [
+        { label: "CNBC — 2 Sep 2026", url: "https://www.cnbc.com/2026/09/02/trump-hormuz-strait-ontario-iran.html" },
+        { label: "The Hill — on the claim of control", url: "https://thehill.com/homenews/administration/6066413-trump-claims-hormuz-control/" },
+        { label: "@WhiteHouse — the map", url: "https://x.com/WhiteHouse/status/2095188498345083028" }
+      ],
+      serious: 6, satire: 9, undo: 2
     },
     {
       id: "012", date: "2026-04-05", status: "executed",
@@ -778,6 +790,8 @@
   }
 
   document.getElementById("slug-count").textContent = String(ALL.length).padStart(2, "0");
+  document.getElementById("slug-last").textContent =
+    fmtDate(ALL.reduce((a, e) => e.date > a ? e.date : a, ALL[0].date));
 
   document.querySelectorAll("[data-sort]").forEach(b => b.addEventListener("click", () => {
     sortKey = b.dataset.sort;
