@@ -4,7 +4,7 @@ A running ledger of renamings, annexations and acquisitions, each scored on thre
 Single self-contained page: `index.html` (data lives in the `ENTRIES` array in the inline script).
 
 Published as a Claude artifact (maintainer access only):
-https://claude.ai/code/artifact/e1339141-a94d-4146-9692-6f566b83206e
+https://claude.ai/artifact/Uouv5q92uWnFmwWtpd3XTb
 
 Discussion and re-scoring: https://t.me/planetarycouncil
 
