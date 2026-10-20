@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Trumpisms Register</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,22 +64,29 @@
     --shadow: 0 1px 0 rgba(0, 0, 0, .3);
   }
 
+  /* Mobile first: base rules target a ~360px phone; min-width queries add room. */
+
   * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   body {
     margin: 0;
     background: var(--ground);
     color: var(--ink);
     font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   .wrap {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 0 20px 96px;
+    padding: 0 16px 64px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
   }
 
   .mono {
@@ -87,20 +98,20 @@
 
   .masthead {
     border-bottom: 2px solid var(--ink);
-    padding: 44px 0 20px;
+    padding: 26px 0 18px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
   }
 
   .slug {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 18px;
+    gap: 4px 14px;
     align-items: baseline;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11px;
-    letter-spacing: .14em;
+    font-size: 10.5px;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
@@ -108,8 +119,8 @@
   h1 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
     font-weight: 800;
-    font-size: clamp(38px, 7vw, 68px);
-    line-height: .94;
+    font-size: clamp(32px, 9.5vw, 68px);
+    line-height: .96;
     letter-spacing: -.03em;
     margin: 0;
     text-wrap: balance;
@@ -119,7 +130,8 @@
     display: block;
     color: var(--ink-soft);
     font-weight: 500;
-    font-size: .42em;
+    font-size: max(16px, .42em);
+    line-height: 1.25;
     letter-spacing: -.01em;
     margin-top: 10px;
   }
@@ -128,6 +140,7 @@
     max-width: 62ch;
     color: var(--ink-soft);
     margin: 0;
+    font-size: 15.5px;
   }
 
   .dek strong { color: var(--ink); font-weight: 600; }
@@ -136,19 +149,19 @@
 
   .legend {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1px;
     background: var(--rule);
     border: 1px solid var(--rule);
-    margin: 28px 0 0;
+    margin: 18px 0 0;
   }
 
   .legend div {
     background: var(--panel);
-    padding: 14px 16px;
+    padding: 11px 14px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .legend dt {
@@ -161,7 +174,7 @@
 
   .legend dd {
     margin: 0;
-    font-size: 14.5px;
+    font-size: 14px;
     color: var(--ink-soft);
     line-height: 1.4;
   }
@@ -172,49 +185,72 @@
 
   /* ---------- controls ---------- */
 
+  /* On a phone each chip group is one swipeable row, so the sticky bar
+     stays two lines tall instead of wrapping into five. */
   .controls {
     position: sticky;
     top: 0;
     z-index: 5;
     background: var(--ground);
     border-bottom: 1px solid var(--rule);
-    padding: 14px 0 12px;
-    margin: 34px 0 0;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 10px 0 8px;
+    margin: 24px -16px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 10px 22px;
+    gap: 6px 10px;
   }
 
   .ctl-group {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 28px 0 16px;
+    scroll-padding-inline: 16px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
   }
 
+  .ctl-group::-webkit-scrollbar { display: none; }
+
+  .ctl-group:first-child { grid-column: 1 / -1; }
+
   .ctl-label {
+    flex: 0 0 auto;
+    min-width: 5.2em;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
 
   button.chip {
+    flex: 0 0 auto;
+    min-height: 36px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
-    letter-spacing: .06em;
+    letter-spacing: .05em;
     text-transform: uppercase;
+    white-space: nowrap;
     color: var(--ink-soft);
     background: var(--panel);
     border: 1px solid var(--rule);
+    border-radius: 0;
     padding: 6px 11px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: background .12s ease, color .12s ease, border-color .12s ease;
   }
 
-  button.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+  @media (hover: hover) {
+    button.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+  }
 
   button.chip[aria-pressed="true"] {
     background: var(--ink);
@@ -229,11 +265,12 @@
   }
 
   .count {
-    margin-left: auto;
+    padding-right: 16px;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11.5px;
+    font-size: 11px;
     color: var(--ink-faint);
     letter-spacing: .04em;
+    white-space: nowrap;
   }
 
   /* ---------- entries ---------- */
@@ -246,9 +283,9 @@
 
   .entry {
     display: grid;
-    grid-template-columns: 132px minmax(0, 1fr) 268px;
-    gap: 0 26px;
-    padding: 24px 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 20px 0;
     border-top: 1px solid var(--rule-soft);
     align-items: start;
   }
@@ -257,8 +294,10 @@
 
   .file {
     display: flex;
-    flex-direction: column;
-    gap: 7px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
     color: var(--ink-faint);
@@ -273,7 +312,7 @@
   }
 
   .status {
-    align-self: flex-start;
+    align-self: center;
     border: 1px solid currentColor;
     padding: 2px 6px;
     font-size: 10px;
@@ -293,47 +332,52 @@
     border-style: dashed;
   }
 
+  .body { min-width: 0; }
+
   .body h2 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 600;
     letter-spacing: -.015em;
-    line-height: 1.2;
-    margin: 0 0 7px;
+    line-height: 1.22;
+    margin: 0 0 6px;
     text-wrap: balance;
   }
 
   .body p {
     margin: 0;
-    font-size: 16px;
+    font-size: 15.5px;
     color: var(--ink-soft);
     max-width: 60ch;
+    overflow-wrap: break-word;
   }
 
   .body .aside {
     margin-top: 9px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--ink-faint);
     letter-spacing: .01em;
   }
 
   .body .src {
-    margin-top: 9px;
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 14px;
+    gap: 4px 14px;
   }
 
   .body .src a {
+    display: inline-block;
+    padding: 4px 0 2px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
     letter-spacing: .01em;
     color: var(--accent);
     text-decoration: none;
     border-bottom: 1px solid var(--accent-soft);
-    padding-bottom: 1px;
+    overflow-wrap: anywhere;
   }
 
   .body .src a::before { content: "↗ "; opacity: .6; }
@@ -342,51 +386,55 @@
 
   /* ---------- meters ---------- */
 
+  /* Phone: the three axes sit side by side, one compact strip under the text. */
   .scores {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    padding-top: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding-top: 4px;
   }
 
   .meter {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 2px 10px;
+    gap: 3px 8px;
     align-items: center;
+    min-width: 0;
   }
 
   .meter .name {
     font-family: "IBM Plex Mono", monospace;
     font-size: 10px;
-    letter-spacing: .12em;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-faint);
     grid-column: 1;
+    grid-row: 1;
   }
 
   .meter .val {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     font-family: "IBM Plex Mono", monospace;
     font-variant-numeric: tabular-nums;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--ink);
-    align-self: center;
     min-width: 2ch;
     text-align: right;
   }
 
   .bar {
-    grid-column: 1;
+    grid-column: 1 / -1;
+    grid-row: 2;
     display: flex;
     gap: 2px;
-    height: 9px;
+    height: 8px;
   }
 
   .bar i {
     flex: 1;
+    min-width: 0;
     background: var(--rule-soft);
     border: 1px solid var(--rule);
     transition: background .25s ease;
@@ -412,10 +460,10 @@
   /* ---------- footer ---------- */
 
   .method {
-    margin-top: 46px;
+    margin-top: 36px;
     border: 1px solid var(--rule);
     background: var(--panel-alt);
-    padding: 22px 24px;
+    padding: 18px 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -440,15 +488,11 @@
   .dispute {
     margin-top: 4px;
     border-top: 1px solid var(--rule);
-    padding-top: 18px;
+    padding-top: 16px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px 28px;
+    flex-direction: column;
+    gap: 14px;
   }
-
-  .dispute > div { flex: 1 1 340px; }
 
   .dispute h4 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
@@ -462,7 +506,6 @@
   .dispute p { max-width: 56ch; }
 
   a.tg {
-    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -470,7 +513,8 @@
     border: 1px solid var(--accent);
     background: var(--accent-soft);
     color: var(--accent);
-    padding: 11px 16px;
+    padding: 13px 16px;
+    -webkit-tap-highlight-color: transparent;
     transition: background .14s ease, color .14s ease;
   }
 
@@ -491,13 +535,81 @@
 
   .tg-handle { font-size: 14px; letter-spacing: .01em; }
 
-  @media (max-width: 860px) {
-    .entry {
-      grid-template-columns: 1fr;
-      gap: 14px;
+  /* ---------- tablet: ≥ 640px ---------- */
+
+  @media (min-width: 640px) {
+    body { font-size: 17px; }
+
+    .wrap {
+      padding: 0 24px 96px;
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
     }
-    .file { flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .scores { max-width: 420px; }
+
+    .masthead { padding: 40px 0 20px; gap: 18px; }
+    .slug { font-size: 11px; letter-spacing: .14em; gap: 8px 18px; }
+    .dek { font-size: 17px; }
+
+    .legend { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 26px; }
+    .legend div { padding: 14px 16px; gap: 6px; }
+    .legend dd { font-size: 14.5px; }
+
+    .controls {
+      margin: 32px 0 0;
+      padding: 14px 0 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+    }
+    .ctl-group { flex-wrap: wrap; overflow: visible; padding: 0; gap: 8px; -webkit-mask-image: none; mask-image: none; }
+    .ctl-label { min-width: 0; font-size: 10.5px; }
+    button.chip { min-height: 0; }
+    .count { margin-left: auto; padding-right: 0; font-size: 11.5px; }
+
+    .entry { padding: 24px 0; gap: 14px; }
+    .body h2 { font-size: 21px; margin-bottom: 7px; }
+    .body p { font-size: 16px; }
+    .scores { max-width: 460px; gap: 18px; }
+
+    .method { margin-top: 46px; padding: 22px 24px; }
+
+    .dispute {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px 28px;
+      padding-top: 18px;
+    }
+    .dispute > div { flex: 1 1 340px; }
+    a.tg { flex: 0 0 auto; padding: 11px 16px; }
+  }
+
+  /* ---------- desktop: ≥ 900px — three-column ledger ---------- */
+
+  @media (min-width: 900px) {
+    .masthead { padding-top: 44px; }
+
+    .entry {
+      grid-template-columns: 132px minmax(0, 1fr) 268px;
+      gap: 0 26px;
+    }
+
+    .file { flex-direction: column; align-items: flex-start; gap: 7px; }
+    .status { align-self: flex-start; }
+
+    .scores {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-width: none;
+      padding-top: 3px;
+    }
+
+    .meter { gap: 2px 10px; }
+    .meter .val { grid-row: 1 / span 2; font-size: 15px; align-self: center; }
+    .meter .name { letter-spacing: .12em; }
+    .bar { grid-column: 1; height: 9px; }
   }
 </style>
 
