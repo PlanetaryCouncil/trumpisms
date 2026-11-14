@@ -45,8 +45,13 @@ the beneficial owner, a public register, success reported in lives changed), the
 programme the surplus pays for: fifteen planetary undertakings costed at published financing
 gaps, a dial for the share of the surplus committed, and a calendar of what ends by when.
 
-The argument the page exists to make is arithmetic: the surplus is about $13T, the whole
-programme costs about $12.3T, and it leaves change.
+The argument the page exists to make is arithmetic: the surplus is about $17T (3,385 people,
+$20.4T, Forbes real-time list of 13 Aug 2026, minus $1B each), the whole programme costs
+about $12.3T, and it leaves $4.7T.
+
+`FIRST_TEN` holds the forecast of who signs first. Every `why` must rest on something the
+person has published about themselves; nobody on it has been asked or has signed, and the
+page says so. Net worth comes from the same snapshot as the surplus.
 
 Data lives in the `WORKS` array in the inline script, **in funding order** — the dial funds
 them top to bottom, so the order is an editorial claim about sequencing:
@@ -72,7 +77,7 @@ Invariants worth keeping when editing:
   eradicates nothing, so the tallies count fully-funded undertakings only.
 - **Populations are never summed** — the same child is in most of them. The people tally is
   `max()` across completed undertakings and says on the page that it is a lower bound.
-- Keep `SURPLUS` (13.0) above the portfolio total; the "left over afterwards" figure on the
+- Keep `SURPLUS` (17.0) above the portfolio total; the "left over afterwards" figure on the
   cover is `SURPLUS − Σcost` and is the whole point of the page. Update the cover figures if
   costs change.
 - Use literal `—` in `desc`/`ends`/`unit`, not `&mdash;`: those strings are HTML-escaped.

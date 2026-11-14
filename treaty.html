@@ -725,6 +725,37 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
+
+  /* ---------- the first ten ---------- */
+  .ten { list-style: none; margin: 26px 0 0; padding: 0; border-top: 1px solid var(--rule); counter-reset: ten; }
+  .ten li {
+    counter-increment: ten;
+    display: grid;
+    grid-template-columns: 2.4em minmax(0, 1fr) auto;
+    gap: 4px 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .ten li::before {
+    content: counter(ten, decimal-leading-zero);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--gold);
+  }
+  .ten .who { font-family: "Archivo", sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); }
+  .ten .who small { display: block; font-family: "IBM Plex Mono", monospace; font-weight: 400; font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+  .ten .frees { font-family: "IBM Plex Mono", monospace; font-size: 15px; color: var(--living); white-space: nowrap; text-align: right; }
+  .ten .frees small { display: block; font-size: 11px; color: var(--ink-faint); }
+  .ten .why { grid-column: 2 / -1; margin: 4px 0 0; font-size: 15.5px; color: var(--ink-soft); max-width: 70ch; }
+  .ten-sum { margin: 18px 0 0; font-family: "IBM Plex Mono", monospace; font-size: 13.5px; color: var(--ink-soft); }
+  .ten-sum b { color: var(--living); }
+  .ten-note { margin: 14px 0 0; font-size: 14.5px; color: var(--ink-faint); max-width: 72ch; }
+  @media (max-width: 560px) {
+    .ten li { grid-template-columns: 2em minmax(0, 1fr); }
+    .ten .frees { grid-column: 2; text-align: left; }
+    .ten .why { grid-column: 2; }
+  }
 </style>
 
 <!-- ============================ cover ============================ -->
@@ -735,6 +766,7 @@
       <span>Fifteen undertakings</span>
       <span>One planet, one balance sheet</span>
       <span>Addressed to the three thousand</span>
+      <span><a href="#first-ten">The first ten &darr;</a></span>
       <span><a href="./index.html">The Trumpisms Register &rarr;</a></span>
     </div>
 
@@ -749,8 +781,8 @@
     <div class="headline-figs">
       <div class="fig">
         <span class="k">The surplus above the cap</span>
-        <div class="v gold">$13T</div>
-        <p>What the world's billionaires hold beyond one billion each. Roughly 3,000 people; roughly $16 trillion; $3 trillion of it under the cap and untouched.</p>
+        <div class="v gold">$17T</div>
+        <p>What the world's billionaires hold beyond one billion each. 3,385 people; $20.4 trillion between them; $3.4 trillion of it under the cap and untouched.</p>
       </div>
       <div class="fig">
         <span class="k">What the whole programme costs</span>
@@ -759,8 +791,8 @@
       </div>
       <div class="fig">
         <span class="k">Left over afterwards</span>
-        <div class="v living">$0.7T</div>
-        <p>The regeneration of the biosphere and the end of preventable death do not exhaust the surplus. They leave change.</p>
+        <div class="v living">$4.7T</div>
+        <p>The regeneration of the biosphere and the end of preventable death do not exhaust the surplus. They leave more than a quarter of it.</p>
       </div>
     </div>
 
@@ -861,6 +893,16 @@
   </section>
 
   <!-- ============================ instrument ============================ -->
+  <section id="first-ten">
+    <p class="rubric">The first ten</p>
+    <h2 class="head">Who signs first, on the public record</h2>
+    <p class="lede">A treaty starts with the people for whom it is the shortest step. These ten have already said, in public and mostly in writing, that the bulk of the fortune is not staying with them. <strong>None of them has been asked yet, and none has signed.</strong> This is our reading of what they have published about themselves &mdash; a forecast, open to argument, not an endorsement by anyone on it.</p>
+
+    <ol class="ten" id="ten"></ol>
+    <p class="ten-sum" id="ten-sum"></p>
+    <p class="ten-note">Net worth is the Forbes real-time figure for 13 August 2026; &ldquo;above the cap&rdquo; is that figure minus one billion. The Anthropic entry counts seven people as one signature because they made one pledge: the company's IPO filing of 26 October 2026 records that each cofounder has pledged 80% of their Anthropic equity to philanthropy, and also that the pledge is voluntary, revocable and not legally binding. That last clause is exactly what Article V exists to close &mdash; a pledge becomes a treaty when it lands on a public register and cannot be quietly withdrawn. Every listing does this: an IPO is the moment a paper fortune becomes a real one, and the cheapest moment there will ever be to put a ceiling on it.</p>
+  </section>
+
   <section id="programme">
     <p class="rubric">The programme</p>
     <h2 class="head">Move the dial. Watch the century change.</h2>
@@ -893,7 +935,7 @@
       <dl class="tally" id="tally">
         <div>
           <dt>Committed</dt>
-          <dd class="mono" id="t-committed">&mdash;<small>Out of a $13 trillion surplus.</small></dd>
+          <dd class="mono" id="t-committed">&mdash;<small>Out of a $17 trillion surplus.</small></dd>
         </div>
         <div>
           <dt>Undertakings completed</dt>
@@ -981,7 +1023,7 @@
 <div class="wrap">
   <section class="method">
     <h3>Method, and where these numbers come from</h3>
-    <p>The $13 trillion surplus is aggregate billionaire wealth (on the order of $16T held by roughly 3,000 people, per the annual wealth lists) minus one billion per person. Each undertaking is costed at the order of magnitude of its published financing gap &mdash; the annual figures that the WHO, UNESCO, the World Bank, UNEP, the IEA and the IAPB already publish for universal water and sanitation, universal education, disease elimination, restoration, energy access and the rest &mdash; multiplied by the years to completion and rounded hard. They are estimates, they carry real uncertainty, and several would move by a factor of two under a serious costing exercise. None of them moves by a factor of ten, which is the only precision the argument actually needs.</p>
+    <p>The $17 trillion surplus is aggregate billionaire wealth &mdash; $20.4 trillion held by 3,385 people on the Forbes real-time list of 13 August 2026 &mdash; minus one billion per person. The list moves daily; the figure is a dated snapshot, not a constant. Each undertaking is costed at the order of magnitude of its published financing gap &mdash; the annual figures that the WHO, UNESCO, the World Bank, UNEP, the IEA and the IAPB already publish for universal water and sanitation, universal education, disease elimination, restoration, energy access and the rest &mdash; multiplied by the years to completion and rounded hard. They are estimates, they carry real uncertainty, and several would move by a factor of two under a serious costing exercise. None of them moves by a factor of ten, which is the only precision the argument actually needs.</p>
     <p>Deaths averted are the current annual death tolls of the causes each undertaking removes, credited only at full deployment: malaria, tuberculosis, HIV, the neglected tropical diseases, unsafe water and sanitation, and air pollution. They are not summed with the ones that overlap. Undertakings whose benefit is real but not a mortality figure &mdash; the ocean, the soil, the knowledge commons, the Trust &mdash; are counted in their own units, because Article VI says the units do not convert and a list that pretends otherwise is lying to make itself look tidier.</p>
     <p>Nothing here is a forecast of what will happen. It is a price list for what could be bought, published so that the gap between the two is a decision somebody is visibly making rather than a fact of nature. Corrections and counter-costings are welcome in the channel above; the numbers on this page are meant to be argued down, and then paid.</p>
   </section>
@@ -1099,7 +1141,7 @@
     }
   ];
 
-  const SURPLUS = 13.0;                       // US$ trillions above the cap
+  const SURPLUS = 17.0;                       // US$ trillions above the cap
   const PORTFOLIO = WORKS.reduce((s, w) => s + w.cost, 0);
 
   const el = id => document.getElementById(id);
@@ -1166,6 +1208,47 @@
     return segs + '<i class="rest" style="width:' + rest.toFixed(3) + '%" title="Surplus remaining"></i>';
   }
 
+  // The first ten: a forecast from the public record. Net worth in US$ billions,
+  // Forbes real-time list, 13 Aug 2026. `n` is the number of people behind one entry.
+  const FIRST_TEN = [
+    { who: "MacKenzie Scott", from: "Amazon", nw: 33.0, n: 1,
+      why: "Signed the Giving Pledge in 2019 and then did it: $19.3 billion to more than 2,500 nonprofits, no strings, accounted for in public on Yield Giving. The closest thing to the treaty already in operation." },
+    { who: "Warren Buffett", from: "Berkshire Hathaway", nw: 144.3, n: 1,
+      why: "Co-founded the Giving Pledge and has committed more than 99% of the fortune. Wrote in his pledge letter that the money has no utility to him and enormous utility to others, which is Article I in his own words." },
+    { who: "Bill Gates", from: "Microsoft", nw: 108.1, n: 1,
+      why: "Announced in 2025 that virtually all of his wealth goes out through the foundation by 2045, which then closes. A date and a destination already exist; the treaty adds the ceiling." },
+    { who: "Michael Bloomberg", from: "Bloomberg LP", nw: 109.4, n: 1,
+      why: "Giving Pledge signatory; the company is promised to Bloomberg Philanthropies. Funded the campaigns behind hundreds of coal-plant retirements and covered the UN climate secretariat's shortfall when Washington would not." },
+    { who: "Melinda French Gates", from: "Microsoft", nw: 30.5, n: 1,
+      why: "Giving Pledge signatory in her own right, now giving independently through Pivotal. Wrote in her pledge letter that she recognises the absurdity of so much wealth sitting with one person." },
+    { who: "The seven Anthropic cofounders", from: "Anthropic", nw: 15.5, n: 7,
+      why: "Dario and Daniela Amodei, Jack Clark, Tom Brown, Jared Kaplan, Sam McCandlish and Christopher Olah pledged 80% of their Anthropic equity to philanthropy, on record in the IPO filing. A whole founding team pledging together at the point of listing, and by the filing's own words still revocable." },
+    { who: "Andrew Forrest", from: "Fortescue", nw: 18.0, n: 1,
+      why: "Giving Pledge signatory. Minderoo Foundation holds an A$9.6 billion endowment, and he is turning an iron-ore company into a green-energy one with his own balance sheet." },
+    { who: "Laurene Powell Jobs", from: "Apple, Disney", nw: 15.0, n: 1,
+      why: "Has said she is not interested in legacy wealth and that it ends with her. Committed $3.5 billion to climate through the Waverley Street Foundation, built to spend down, not to last." },
+    { who: "Dustin Moskovitz", from: "Facebook", nw: 10.2, n: 1,
+      why: "The youngest person to have signed the Giving Pledge when he did, in 2010. Gives through Good Ventures on published reasoning about where a dollar does the most, which is Article VI's method." },
+    { who: "Hansj\u00f6rg Wyss", from: "Synthes", nw: 4.8, n: 1,
+      why: "Giving Pledge signatory who put $1 billion behind protecting 30% of the planet by 2030. Already most of the way to the cap from the other side." }
+  ];
+
+  (function renderTen() {
+    const b = v => "$" + (v >= 100 ? v.toFixed(0) : v.toFixed(1)) + "B";
+    el("ten").innerHTML = FIRST_TEN.map(t => {
+      const above = (t.nw - 1) * t.n;
+      return '<li><div class="who">' + esc(t.who)
+        + '<small>' + esc(t.from) + ' · ' + b(t.nw) + (t.n > 1 ? ' each' : '') + '</small></div>'
+        + '<div class="frees">' + b(above) + '<small>above the cap</small></div>'
+        + '<p class="why">' + esc(t.why) + '</p></li>';
+    }).join("");
+    const people = FIRST_TEN.reduce((s, t) => s + t.n, 0);
+    const above = FIRST_TEN.reduce((s, t) => s + (t.nw - 1) * t.n, 0);
+    el("ten-sum").innerHTML = people + " people, ten signatures: <b>$" + Math.round(above)
+      + " billion</b> above the cap — " + (above / 1000 / SURPLUS * 100).toFixed(1)
+      + "% of the surplus, and proof to the other 3,369 that it can be done.";
+  })();
+
   function render(pct) {
     const committed = SURPLUS * (pct / 100);
     const states = fundingState(committed);
@@ -1181,7 +1264,7 @@
 
     el("share-out").textContent = pct + "%";
     el("t-committed").innerHTML = money(committed)
-      + "<small>Out of a $13 trillion surplus. " + (committed >= PORTFOLIO
+      + "<small>Out of a $17 trillion surplus. " + (committed >= PORTFOLIO
         ? "Enough for all fifteen, with " + money(SURPLUS - PORTFOLIO) + " left over."
         : "Short of the full programme by " + money(PORTFOLIO - committed) + ".") + "</small>";
     el("t-done").innerHTML = done.length + " of 15"
