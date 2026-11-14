@@ -36,3 +36,64 @@ The three scores are AI-assigned, single-pass, and the page says so. Re-scoring 
 Telegram channel: https://t.me/planetarycouncil
 
 Republish after editing by pointing the Artifact tool at `index.html` with the URL above.
+
+## The Billionaire Non-Proliferation Treaty
+
+Second page: `treaty.html`. Seven treaty articles (a one-billion cap per natural person,
+everything above it committed to the planetary commons within ten years, holdings counted at
+the beneficial owner, a public register, success reported in lives changed), then the
+programme the surplus pays for: fifteen planetary undertakings costed at published financing
+gaps, a dial for the share of the surplus committed, and a calendar of what ends by when.
+
+The argument the page exists to make is arithmetic: the surplus is about $17T (3,385 people,
+$20.4T, Forbes real-time list of 13 Aug 2026, minus $1B each), the whole programme costs
+about $12.3T, and it leaves $4.7T.
+
+`FIRST_TEN` holds the forecast of who signs first. Every `why` must rest on something the
+person has published about themselves; nobody on it has been asked or has signed, and the
+page says so. Net worth comes from the same snapshot as the surplus.
+
+Data lives in the `WORKS` array in the inline script, **in funding order** — the dial funds
+them top to bottom, so the order is an editorial claim about sequencing:
+
+```js
+{
+  id: "I",
+  cost: 0.12,                // US$ trillions, at published financing-gap scale
+  term: "2027–2031",
+  title: "…",
+  desc: "…",                 // what the undertaking actually buys, 1–2 sentences
+  ends: "…",                 // the mono line: what stops happening
+  deaths: 600000,            // annual deaths averted at full deployment; null where the
+                             // benefit is real but is not a mortality figure
+  people: 240000000,         // people whose material conditions change
+  unit: "people no longer living in transmission zones"
+}
+```
+
+Invariants worth keeping when editing:
+
+- **Deaths and people are credited only at completion.** A half-funded eradication campaign
+  eradicates nothing, so the tallies count fully-funded undertakings only.
+- **Populations are never summed** — the same child is in most of them. The people tally is
+  `max()` across completed undertakings and says on the page that it is a lower bound.
+- Keep `SURPLUS` (17.0) above the portfolio total; the "left over afterwards" figure on the
+  cover is `SURPLUS − Σcost` and is the whole point of the page. Update the cover figures if
+  costs change.
+- Use literal `—` in `desc`/`ends`/`unit`, not `&mdash;`: those strings are HTML-escaped.
+- Preset chips (`data-pct`) are cumulative thresholds — check them against the costs after
+  reordering, or a preset will label the wrong boundary.
+
+Figures are order-of-magnitude estimates from published financing gaps (WHO, UNESCO, the
+World Bank, UNEP, IEA), rounded hard. The method section on the page says so; keep it honest
+if you change the numbers.
+
+## Person pages
+
+`people/data/<id>.json` is the source; `node build-people.mjs` writes `people/<id>.html` and
+`people/index.html`. Edit the JSON and rebuild, never the HTML.
+
+Every fact on a page must trace to an entry in its `sources`, and a file with no sources does
+not build. Pages state that the person has not been asked and has not signed. Someone who is
+not on the Forbes dollar list (Paul McCartney, counted in pounds by the Sunday Times) carries
+`net_worth_usd_b: null` and a `net_worth_text` instead, so no currency is converted silently.
