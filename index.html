@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Trumpisms Register</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,22 +64,29 @@
     --shadow: 0 1px 0 rgba(0, 0, 0, .3);
   }
 
+  /* Mobile first: base rules target a ~360px phone; min-width queries add room. */
+
   * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 
   body {
     margin: 0;
     background: var(--ground);
     color: var(--ink);
     font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   .wrap {
     max-width: 1080px;
     margin: 0 auto;
-    padding: 0 20px 96px;
+    padding: 0 16px 64px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
   }
 
   .mono {
@@ -87,20 +98,20 @@
 
   .masthead {
     border-bottom: 2px solid var(--ink);
-    padding: 44px 0 20px;
+    padding: 26px 0 18px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
   }
 
   .slug {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 18px;
+    gap: 4px 14px;
     align-items: baseline;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11px;
-    letter-spacing: .14em;
+    font-size: 10.5px;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
@@ -111,8 +122,8 @@
   h1 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
     font-weight: 800;
-    font-size: clamp(38px, 7vw, 68px);
-    line-height: .94;
+    font-size: clamp(32px, 9.5vw, 68px);
+    line-height: .96;
     letter-spacing: -.03em;
     margin: 0;
     text-wrap: balance;
@@ -122,7 +133,8 @@
     display: block;
     color: var(--ink-soft);
     font-weight: 500;
-    font-size: .42em;
+    font-size: max(16px, .42em);
+    line-height: 1.25;
     letter-spacing: -.01em;
     margin-top: 10px;
   }
@@ -131,6 +143,7 @@
     max-width: 62ch;
     color: var(--ink-soft);
     margin: 0;
+    font-size: 15.5px;
   }
 
   .dek strong { color: var(--ink); font-weight: 600; }
@@ -139,19 +152,19 @@
 
   .legend {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1px;
     background: var(--rule);
     border: 1px solid var(--rule);
-    margin: 28px 0 0;
+    margin: 18px 0 0;
   }
 
   .legend div {
     background: var(--panel);
-    padding: 14px 16px;
+    padding: 11px 14px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .legend dt {
@@ -164,7 +177,7 @@
 
   .legend dd {
     margin: 0;
-    font-size: 14.5px;
+    font-size: 14px;
     color: var(--ink-soft);
     line-height: 1.4;
   }
@@ -175,49 +188,72 @@
 
   /* ---------- controls ---------- */
 
+  /* On a phone each chip group is one swipeable row, so the sticky bar
+     stays two lines tall instead of wrapping into five. */
   .controls {
     position: sticky;
     top: 0;
     z-index: 5;
     background: var(--ground);
     border-bottom: 1px solid var(--rule);
-    padding: 14px 0 12px;
-    margin: 34px 0 0;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 10px 0 8px;
+    margin: 24px -16px 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    gap: 10px 22px;
+    gap: 6px 10px;
   }
 
   .ctl-group {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 28px 0 16px;
+    scroll-padding-inline: 16px;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
   }
 
+  .ctl-group::-webkit-scrollbar { display: none; }
+
+  .ctl-group:first-child { grid-column: 1 / -1; }
+
   .ctl-label {
+    flex: 0 0 auto;
+    min-width: 5.2em;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
 
   button.chip {
+    flex: 0 0 auto;
+    min-height: 36px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
-    letter-spacing: .06em;
+    letter-spacing: .05em;
     text-transform: uppercase;
+    white-space: nowrap;
     color: var(--ink-soft);
     background: var(--panel);
     border: 1px solid var(--rule);
+    border-radius: 0;
     padding: 6px 11px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: background .12s ease, color .12s ease, border-color .12s ease;
   }
 
-  button.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+  @media (hover: hover) {
+    button.chip:hover { border-color: var(--ink-soft); color: var(--ink); }
+  }
 
   button.chip[aria-pressed="true"] {
     background: var(--ink);
@@ -232,11 +268,12 @@
   }
 
   .count {
-    margin-left: auto;
+    padding-right: 16px;
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11.5px;
+    font-size: 11px;
     color: var(--ink-faint);
     letter-spacing: .04em;
+    white-space: nowrap;
   }
 
   /* ---------- entries ---------- */
@@ -249,9 +286,9 @@
 
   .entry {
     display: grid;
-    grid-template-columns: 132px minmax(0, 1fr) 268px;
-    gap: 0 26px;
-    padding: 24px 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    padding: 20px 0;
     border-top: 1px solid var(--rule-soft);
     align-items: start;
   }
@@ -260,8 +297,10 @@
 
   .file {
     display: flex;
-    flex-direction: column;
-    gap: 7px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 12px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
     color: var(--ink-faint);
@@ -276,7 +315,7 @@
   }
 
   .status {
-    align-self: flex-start;
+    align-self: center;
     border: 1px solid currentColor;
     padding: 2px 6px;
     font-size: 10px;
@@ -296,47 +335,52 @@
     border-style: dashed;
   }
 
+  .body { min-width: 0; }
+
   .body h2 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 600;
     letter-spacing: -.015em;
-    line-height: 1.2;
-    margin: 0 0 7px;
+    line-height: 1.22;
+    margin: 0 0 6px;
     text-wrap: balance;
   }
 
   .body p {
     margin: 0;
-    font-size: 16px;
+    font-size: 15.5px;
     color: var(--ink-soft);
     max-width: 60ch;
+    overflow-wrap: break-word;
   }
 
   .body .aside {
     margin-top: 9px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
-    line-height: 1.5;
+    line-height: 1.55;
     color: var(--ink-faint);
     letter-spacing: .01em;
   }
 
   .body .src {
-    margin-top: 9px;
+    margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 14px;
+    gap: 4px 14px;
   }
 
   .body .src a {
+    display: inline-block;
+    padding: 4px 0 2px;
     font-family: "IBM Plex Mono", monospace;
     font-size: 11.5px;
     letter-spacing: .01em;
     color: var(--accent);
     text-decoration: none;
     border-bottom: 1px solid var(--accent-soft);
-    padding-bottom: 1px;
+    overflow-wrap: anywhere;
   }
 
   .body .src a::before { content: "↗ "; opacity: .6; }
@@ -345,51 +389,55 @@
 
   /* ---------- meters ---------- */
 
+  /* Phone: the three axes sit side by side, one compact strip under the text. */
   .scores {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    padding-top: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    padding-top: 4px;
   }
 
   .meter {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 2px 10px;
+    gap: 3px 8px;
     align-items: center;
+    min-width: 0;
   }
 
   .meter .name {
     font-family: "IBM Plex Mono", monospace;
     font-size: 10px;
-    letter-spacing: .12em;
+    letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--ink-faint);
     grid-column: 1;
+    grid-row: 1;
   }
 
   .meter .val {
     grid-column: 2;
-    grid-row: 1 / span 2;
+    grid-row: 1;
     font-family: "IBM Plex Mono", monospace;
     font-variant-numeric: tabular-nums;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--ink);
-    align-self: center;
     min-width: 2ch;
     text-align: right;
   }
 
   .bar {
-    grid-column: 1;
+    grid-column: 1 / -1;
+    grid-row: 2;
     display: flex;
     gap: 2px;
-    height: 9px;
+    height: 8px;
   }
 
   .bar i {
     flex: 1;
+    min-width: 0;
     background: var(--rule-soft);
     border: 1px solid var(--rule);
     transition: background .25s ease;
@@ -415,10 +463,10 @@
   /* ---------- footer ---------- */
 
   .method {
-    margin-top: 46px;
+    margin-top: 36px;
     border: 1px solid var(--rule);
     background: var(--panel-alt);
-    padding: 22px 24px;
+    padding: 18px 16px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -443,15 +491,11 @@
   .dispute {
     margin-top: 4px;
     border-top: 1px solid var(--rule);
-    padding-top: 18px;
+    padding-top: 16px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px 28px;
+    flex-direction: column;
+    gap: 14px;
   }
-
-  .dispute > div { flex: 1 1 340px; }
 
   .dispute h4 {
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
@@ -465,7 +509,6 @@
   .dispute p { max-width: 56ch; }
 
   a.tg {
-    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -473,7 +516,8 @@
     border: 1px solid var(--accent);
     background: var(--accent-soft);
     color: var(--accent);
-    padding: 11px 16px;
+    padding: 13px 16px;
+    -webkit-tap-highlight-color: transparent;
     transition: background .14s ease, color .14s ease;
   }
 
@@ -494,13 +538,81 @@
 
   .tg-handle { font-size: 14px; letter-spacing: .01em; }
 
-  @media (max-width: 860px) {
-    .entry {
-      grid-template-columns: 1fr;
-      gap: 14px;
+  /* ---------- tablet: ≥ 640px ---------- */
+
+  @media (min-width: 640px) {
+    body { font-size: 17px; }
+
+    .wrap {
+      padding: 0 24px 96px;
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
     }
-    .file { flex-direction: row; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .scores { max-width: 420px; }
+
+    .masthead { padding: 40px 0 20px; gap: 18px; }
+    .slug { font-size: 11px; letter-spacing: .14em; gap: 8px 18px; }
+    .dek { font-size: 17px; }
+
+    .legend { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 26px; }
+    .legend div { padding: 14px 16px; gap: 6px; }
+    .legend dd { font-size: 14.5px; }
+
+    .controls {
+      margin: 32px 0 0;
+      padding: 14px 0 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+    }
+    .ctl-group { flex-wrap: wrap; overflow: visible; padding: 0; gap: 8px; -webkit-mask-image: none; mask-image: none; }
+    .ctl-label { min-width: 0; font-size: 10.5px; }
+    button.chip { min-height: 0; }
+    .count { margin-left: auto; padding-right: 0; font-size: 11.5px; }
+
+    .entry { padding: 24px 0; gap: 14px; }
+    .body h2 { font-size: 21px; margin-bottom: 7px; }
+    .body p { font-size: 16px; }
+    .scores { max-width: 460px; gap: 18px; }
+
+    .method { margin-top: 46px; padding: 22px 24px; }
+
+    .dispute {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px 28px;
+      padding-top: 18px;
+    }
+    .dispute > div { flex: 1 1 340px; }
+    a.tg { flex: 0 0 auto; padding: 11px 16px; }
+  }
+
+  /* ---------- desktop: ≥ 900px — three-column ledger ---------- */
+
+  @media (min-width: 900px) {
+    .masthead { padding-top: 44px; }
+
+    .entry {
+      grid-template-columns: 132px minmax(0, 1fr) 268px;
+      gap: 0 26px;
+    }
+
+    .file { flex-direction: column; align-items: flex-start; gap: 7px; }
+    .status { align-self: flex-start; }
+
+    .scores {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-width: none;
+      padding-top: 3px;
+    }
+
+    .meter { gap: 2px 10px; }
+    .meter .val { grid-row: 1 / span 2; font-size: 15px; align-self: center; }
+    .meter .name { letter-spacing: .12em; }
+    .bar { grid-column: 1; height: 9px; }
   }
 
   .treaty-link {
@@ -525,7 +637,7 @@
   <header class="masthead">
     <div class="slug">
       <span><span class="mono" id="slug-count">00</span> entries</span>
-      <span>Last entry 27 Aug 2026</span>
+      <span>Last entry <span id="slug-last">&mdash;</span></span>
       <span>Scores assigned by AI</span>
       <span><a href="./treaty.html">Billionaire Non-Proliferation Treaty &rarr;</a></span>
     </div>
@@ -597,6 +709,55 @@
 <script>
   const ENTRIES = [
     {
+      id: "023", date: "2026-09-22", status: "executed",
+      title: "Artificial intelligence becomes “super intelligence”",
+      desc: "Announced from the podium at the UN General Assembly — that the name would “officially” change, because “the use of the word artificial makes intelligence fake, it makes it sound fake and it is not fake.” Within a day the State Department's international organizations bureau circulated an email, subject line “Change in Nomenclature AI to SI,” instructing staff to change every reference in documents and positions.",
+      note: "The first renaming on this register whose target is not a place but an idea: a lake, a strait, a state, the Moon, and now a field of research. The bureau runs the US missions to every UN and multilateral agency, so the term travels into international positions; whether other bureaus follow was not clear. The president later reported that Xi “seemed to like” it.",
+      src: [
+        { label: "AP — the cable, 23 Sep 2026", url: "https://abcnews.com/US/wireStory/us-diplomats-told-term-super-intelligence-artificial-intelligence-136698441" },
+        { label: "Washington Post — the rebrand", url: "https://www.washingtonpost.com/politics/2026/09/23/trump-super-intelligence-rebrand-ai-diplomats/c6d1c722-b791-11f1-94cb-d3d8f22a8c8b_story.html" },
+        { label: "The Hill — diplomats ordered", url: "https://thehill.com/homenews/administration/6109549-diplomats-ai-super-intelligence/" }
+      ],
+      serious: 8, satire: 8, undo: 2
+    },
+    {
+      id: "022", date: "2026-09-14", status: "stated",
+      title: "AI needs no guardrails — only a “High IQ” president",
+      desc: "Responding on Truth Social to growing industry and public alarm over AI safety — including Anthropic's own CEO — the president wrote: “The only control or ‘guardrails’ that AI needs is a STRONG AND SMART (High IQ!) PRESIDENT, and the U.S.A. has that, in spades!” He called the safety push a “SICK conspiracy” against AI and data centers, and named Dario Amodei directly as someone “pretending to be a ‘perfect little angel.’”",
+      note: "The most consequential technology policy question of the decade, dismissed as no different from a bathroom break — the entire safety case answered with a self-assessment of the president's own intelligence, from the man overseeing it. No mechanism, no framework, no agency cited: the guardrail is a personality trait, unverifiable and self-declared, replacing the actual regulatory apparatus that governs every other technology his own administration touches.",
+      src: [
+        { label: "NBC News — Trump rejects AI guardrails", url: "https://www.nbcnews.com/politics/trump-administration/trump-rejects-ai-guardrails-rcna597700" },
+        { label: "WSJ — Trump says AI doesn't need more guardrails", url: "https://www.wsj.com/tech/ai/trump-says-ai-doesnt-need-more-guardrails-despite-industry-warnings-b94263fa" },
+        { label: "truthsocial.com (mirror) — the post itself", url: "https://www.trumpstruth.org/statuses/41712" }
+      ],
+      serious: 8, satire: 9, undo: 4
+    },
+    {
+      id: "021", date: "2026-09-12", status: "observed",
+      title: "Thanked for the hurricanes that didn't form",
+      desc: "A meteorologist noted that, as of 12 September 2026, no hurricane had yet formed in the Atlantic — a satellite-era record for the date, beating 2002 and 2013. The White House-aligned @RapidResponse47 account quote-tweeted it: “Thank you, President Trump!”",
+      note: "Forecasters attribute the quiet season to a strong, intensifying El Niño suppressing storm formation across the basin — a well-understood, pre-existing climate pattern, not a policy outcome. The season runs through 30 November and has produced blank hurricane before; two of the three prior record-slow years (2002, 2013) still went on to have hurricanes. Nothing in the post claims a mechanism, because there isn't one to claim.",
+      src: [
+        { label: "AP News — Atlantic sets record for lack of hurricanes", url: "https://apnews.com/article/hurricanes-atlantic-el-nino-warming-oceans-53993f467ae90f20eff5976bf144c8e3" },
+        { label: "Forbes — no hurricane has formed this year", url: "https://www.forbes.com/sites/marshallshepherd/2026/09/11/no-hurricane-has-formed-in-the-atlantic-this-year---thats-historic/" },
+        { label: "@RapidResponse47 — the post itself", url: "https://x.com/rapidresponse47/status/2098959864609259758" }
+      ],
+      satire: 8
+    },
+    {
+      id: "020", date: "2026-09-09", status: "stated",
+      title: "$5,000 “Trump dividend” — but only if Republicans win the midterms",
+      desc: "At the Republican Party's midterm convention in Dallas, a pledge to pay every American adult a $5,000 “dividend,” explicitly conditioned on the GOP holding the House and Senate in November. He said the money would have to be spent in the U.S.",
+      note: "A federal payment made contingent on a specific election outcome, from a sitting president, funded by tariff revenue he does not control the size of. Economists put the total cost above $1 trillion; no mechanism, appropriation or vehicle was named. Congress, not the president, spends money — and this administration has spent nine months finding out how much of that is still true.",
+      src: [
+        { label: "Reuters — 9 Sep 2026", url: "https://www.reuters.com/world/us/republicans-tie-midterm-hopes-trump-dallas-convention-despite-political-risks-2026-09-09/" },
+        { label: "CNN — takeaways from the convention", url: "https://www.cnn.com/2026/09/09/politics/trumpapalooza-rnc-midterm-convention-takeaways-5000-payments-dividend" },
+        { label: "BBC — the pledge", url: "https://www.bbc.co.uk/news/articles/c62kzr1jg0jo" },
+        { label: "Forbes — on the cost", url: "https://www.forbes.com/sites/siladityaray/2026/09/09/trump-promises-5000-dividend-for-every-adult-citizen-if-republicans-win-midterms/" }
+      ],
+      serious: 7, satire: 8, undo: 3
+    },
+    {
       id: "001", date: "2026-08-27", status: "signed",
       title: "Lake Ontario becomes “Lake America”",
       desc: "An executive order directs the federal government to call Lake Ontario “Lake America” inside the United States, announced as the trade war with Canada escalated. The lake remains, in Canada, Lake Ontario.",
@@ -616,6 +777,66 @@
       desc: "An executive order adopts “Department of War” as a secondary title for the Pentagon and directs officials to use it, with a request to Congress to make the rename permanent.",
       note: "The department was called the War Department until 1947. Renaming it back needs Congress; using the title does not.",
       serious: 8, satire: 5, undo: 3
+    },
+    {
+      id: "019", date: "2026-09-08", status: "observed",
+      title: "Carried from Ground Zero by two firefighters",
+      desc: "Told at a White House event honouring 9/11 responders, three days before the 25th anniversary: that two firefighters lifted him off the ground near the U.S. Steel Building as it began to creak and carried him clear, telling him “got to get out of here.”",
+      note: "Asked for any evidence or detail, the White House provided none. A former FDNY deputy chief on the president's account of the recovery effort: “I never witnessed him.” The story was told to the responders themselves; he then attended the Pentagon commemoration and skipped New York's, and attacked a magazine for calling the remarks a lie.",
+      src: [
+        { label: "CNN — fact check, 8 Sep 2026", url: "https://www.cnn.com/2026/09/08/politics/fact-check-trump-9-11-claims" },
+        { label: "PBS — fact-checking his 9/11 stories", url: "https://www.pbs.org/newshour/politics/fact-checking-trumps-stories-about-his-own-9-11-response" },
+        { label: "NBC News — the remarks", url: "https://www.nbcnews.com/politics/donald-trump/firefighters-ground-zero-right-after-september-11-attacks-rcna596723" }
+      ],
+      satire: 5
+    },
+    {
+      id: "018", date: "2026-09-06", status: "observed",
+      title: "Day-trading the Oval Office",
+      desc: "An AI-generated image of the president at a bank of trading monitors behind the Resolute Desk — “BOUGHT: INTEL $20” beside “NOW $95” — captioned: “I've made Hundreds of Billions of Dollars on Stocks, and many other type Holdings, for the U.S.A., not myself, and all I do is get criticized.”",
+      note: "One of dozens of AI images posted across more than ten hours of the same Sunday that produced the New Mexico map (№ 016) and the Moon (№ 017). Something real sits under it: the administration took a 10% stake in Intel in August 2025, now worth over $50bn. But the largest gain documented on the government's books is roughly $33bn, on paper — an order of magnitude short of the boast.",
+      src: [
+        { label: "CNBC — 7 Sep 2026", url: "https://www.cnbc.com/2026/09/07/trump-truth-social-ai-images-posting-spree.html" },
+        { label: "truthsocial.com — the post", url: "https://truthsocial.com/@realDonaldTrump/posts/117225700476536773" }
+      ],
+      satire: 9
+    },
+    {
+      id: "017", date: "2026-09-06", status: "floated",
+      title: "“The Moon is ours”",
+      desc: "An image of the Moon and a US flag, posted to Truth Social with the claim of ownership — one of roughly three dozen posts published in a two-hour stretch on the same Sunday that produced the New Mexico map.",
+      note: "The 1967 Outer Space Treaty, which the United States signed and ratified, forbids exactly this: no celestial body is subject to national appropriation by claim of sovereignty. Neither a flag nor a proclamation conveys title. Eleven days, four claims: a lake, a strait, a state, the Moon.",
+      src: [
+        { label: "Fact check — nobody owns the Moon", url: "https://www.yahoo.com/news/articles/fact-check-us-doesnt-own-140000447.html" },
+        { label: "Raw Story — three dozen posts in two hours", url: "https://www.rawstory.com/trump-2677825640/" }
+      ],
+      serious: 1, satire: 9, undo: 1
+    },
+    {
+      id: "016", date: "2026-09-06", status: "floated",
+      title: "New Mexico becomes “New America”",
+      desc: "A map of the state posted to Truth Social with “Mexico” struck through in red and “America” written under it, amplified within the hour by the White House's own account. No order, no mechanism, no announced effort.",
+      note: "It began as a joke about itself. On 1 September a satirical account invented an executive order renaming the state; the fake went viral, was debunked, and five days later the president posted the map for real. A president cannot rename a state — that runs through the state and Congress. The governor: “New Mexico's name isn't up for debate.”",
+      src: [
+        { label: "CNN — 6 Sep 2026", url: "https://www.cnn.com/2026/09/06/politics/trump-map-renames-new-mexico-as-new-america" },
+        { label: "The Hill — on the hoax that preceded it", url: "https://thehill.com/homenews/administration/6074249-trump-posts-map-labeling-new-mexico-as-new-america-after-online-hoax/" },
+        { label: "Santa Fe New Mexican — the state's response", url: "https://www.santafenewmexican.com/news/local_news/trump-social-media-post-proposes-renaming-new-mexico-new-america/article_c6acf701-26fa-4fe5-8b81-416bb50b218c.html" },
+        { label: "@WhiteHouse — the map", url: "https://x.com/WhiteHouse/status/2096657477928448250" }
+      ],
+      serious: 2, satire: 10, undo: 1
+    },
+    {
+      id: "015", date: "2026-09-02", status: "stated",
+      title: "The Strait of Hormuz becomes the “Trump Strait”",
+      desc: "“Now that we have it under U.S.A. control, should we change the name Hormuz Strait to TRUMP STRAIT??? Like America itself, it would be ‘hotter’ than ever before!” The White House rapid-response account carried the post; an hour later the White House itself published a map of the Gulf with the waterway already relabelled, captioned “It's got a nice ring to it.”",
+      note: "The strait is bounded by Iran and Oman and is nowhere near the United States; no mechanism for the change has been named. Five months earlier the same account demanded Tehran “open the Fuckin' Strait” (№ 012). The Lake America order was signed six days ago.",
+      src: [
+        { label: "CNBC — 2 Sep 2026", url: "https://www.cnbc.com/2026/09/02/trump-hormuz-strait-ontario-iran.html" },
+        { label: "The Hill — on the claim of control", url: "https://thehill.com/homenews/administration/6066413-trump-claims-hormuz-control/" },
+        { label: "@RapidResponse47 — the post itself", url: "https://x.com/RapidResponse47/status/2095171190994186345" },
+        { label: "@WhiteHouse — the map, one hour later", url: "https://x.com/WhiteHouse/status/2095188498345083028" }
+      ],
+      serious: 6, satire: 9, undo: 2
     },
     {
       id: "012", date: "2026-04-05", status: "executed",
@@ -803,6 +1024,8 @@
   }
 
   document.getElementById("slug-count").textContent = String(ALL.length).padStart(2, "0");
+  document.getElementById("slug-last").textContent =
+    fmtDate(ALL.reduce((a, e) => e.date > a ? e.date : a, ALL[0].date));
 
   document.querySelectorAll("[data-sort]").forEach(b => b.addEventListener("click", () => {
     sortKey = b.dataset.sort;
