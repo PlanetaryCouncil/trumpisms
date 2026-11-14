@@ -87,3 +87,13 @@ Invariants worth keeping when editing:
 Figures are order-of-magnitude estimates from published financing gaps (WHO, UNESCO, the
 World Bank, UNEP, IEA), rounded hard. The method section on the page says so; keep it honest
 if you change the numbers.
+
+## Person pages
+
+`people/data/<id>.json` is the source; `node build-people.mjs` writes `people/<id>.html` and
+`people/index.html`. Edit the JSON and rebuild, never the HTML.
+
+Every fact on a page must trace to an entry in its `sources`, and a file with no sources does
+not build. Pages state that the person has not been asked and has not signed. Someone who is
+not on the Forbes dollar list (Paul McCartney, counted in pounds by the Sunday Times) carries
+`net_worth_usd_b: null` and a `net_worth_text` instead, so no currency is converted silently.
