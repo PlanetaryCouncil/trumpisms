@@ -364,6 +364,31 @@
     letter-spacing: .01em;
   }
 
+  /* Original screenshots: the post as it appeared, kept because posts get deleted. */
+  .body .shot {
+    margin: 14px 0 0;
+    max-width: 380px;
+  }
+
+  .body .shot a { display: block; }
+
+  .body .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    background: var(--panel-alt);
+  }
+
+  .body .shot figcaption {
+    margin-top: 6px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: .03em;
+    line-height: 1.5;
+    color: var(--ink-faint);
+  }
+
   .body .src {
     margin-top: 10px;
     display: flex;
@@ -698,6 +723,11 @@
         { label: "Jalopnik — Huang reinstated", url: "https://www.jalopnik.com/2325059/jensen-huang-reinstated-nvidia-ceo/" },
         { label: "CBS News — the resignation, 12 Nov", url: "https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/" }
       ],
+      shot: {
+        file: "shots/024-huang-red-bra.webp", w: 1170, h: 1502,
+        alt: "Screenshot of the Truth Social post by @realDonaldTrump, 23 Nov 2026, 4:32 PM: an edited Butler rally photo with Jensen Huang, face bloodied, raising a red bra in front of an Nvidia flag, surrounded by Secret Service agents. 3.02k ReTruths, 13.9k likes, 2,370 replies.",
+        caption: "The original post, captured the day it went up — kept here in case it comes down."
+      },
       satire: 8
     },
     {
@@ -983,6 +1013,10 @@
           <h2>${esc(e.title)}</h2>
           <p>${esc(e.desc)}</p>
           <p class="aside">${esc(e.note)}</p>
+          ${e.shot ? `<figure class="shot">
+            <a href="${e.shot.file}" target="_blank" rel="noopener"><img src="${e.shot.file}" width="${e.shot.w}" height="${e.shot.h}" alt="${e.shot.alt.replace(/"/g, "&quot;")}" loading="lazy" decoding="async"></a>
+            <figcaption>${esc(e.shot.caption)}</figcaption>
+          </figure>` : ""}
           ${(e.src || []).length ? `<p class="src">${e.src.map(x =>
             `<a href="${x.url}" target="_blank" rel="noopener noreferrer">${esc(x.label)}</a>`).join("")}</p>` : ""}
         </div>

@@ -19,6 +19,8 @@ Discussion and re-scoring: https://t.me/planetarycouncil
   desc: "…",                 // what happened, 2–3 sentences
   note: "…",                 // the mono footnote: the catch, the precedent, the veto point
   src: [{ label: "…", url: "https://…" }],  // optional; renders as ↗ links under the note
+  shot: { file: "shots/NNN-slug.webp", w: 1170, h: 1502,   // optional; the original post as captured
+          alt: "…", caption: "…" },                      // image lives in shots/, links to full size
   serious: 0,                // 0 = riff at a rally,        10 = signed, staffed, funded
   satire:  0,                // 0 = ordinary politics,      10 = indistinguishable from parody
   undo:    0                 // 0 = reversed by memo,       10 = irreversible
