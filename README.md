@@ -38,9 +38,3 @@ The three scores are AI-assigned, single-pass, and the page says so. Re-scoring 
 Telegram channel: https://t.me/planetarycouncil
 
 Republish after editing by pointing the Artifact tool at `index.html` with the URL above.
-
-## The Billionaire Non-Proliferation Treaty
-
-Moved to the Planetary Council site: https://planetarycouncil.org/treaty.html (source in the
-`planetarycouncil.org` repo). `treaty.html` and `people/` here are
-redirect stubs so links already shared keep working.
