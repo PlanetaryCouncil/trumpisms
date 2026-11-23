@@ -41,6 +41,6 @@ Republish after editing by pointing the Artifact tool at `index.html` with the U
 
 ## The Billionaire Non-Proliferation Treaty
 
-Moved to the Planetary Council site: https://planetarycouncil.org/billionaire-treaty/ (source in
-the `planetarycouncil.org` repo, `billionaire-treaty/`). `treaty.html` and `people/` here are
+Moved to the Planetary Council site: https://planetarycouncil.org/treaty.html (source in the
+`planetarycouncil.org` repo). `treaty.html` and `people/` here are
 redirect stubs so links already shared keep working.
